@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Life Coach",
+    "slug": "lifecoach",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "lifecoach",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#0B0B0F",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vitalij.lifecoach",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "The coach listens when you talk to it out loud.",
+        "NSSpeechRecognitionUsageDescription": "Used to turn what you say into text for the coach.",
+        "NSCalendarsUsageDescription": "Used to propose and schedule the blocks you approve.",
+        "NSHealthShareUsageDescription": "Used to automatically confirm habits like walks, sleep and mindfulness."
+      }
+    },
+    "android": {
+      "package": "com.vitalij.lifecoach"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "The coach listens when you talk to it out loud.",
+          "speechRecognitionPermission": "Used to turn what you say into text for the coach.",
+          "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}
