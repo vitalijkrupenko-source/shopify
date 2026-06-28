@@ -44,6 +44,34 @@ navigates; the coach just tells you it isn't connected yet.
 > for anything shared put a thin proxy in front of the Anthropic API and point
 > `getClient()` at it (`src/coach/client.ts`).
 
+## Voice (it's voice-first)
+
+The coach is meant to be talked to out loud. Both halves are wired:
+
+- **Speech → text** uses `expo-speech-recognition` (iOS Speech framework / Android
+  SpeechRecognizer) in `src/voice/useVoiceInput.ts`. Tap the mic in any conversation,
+  speak, and the live transcript fills the field; it sends when you stop. The require
+  is guarded, so if the native module isn't present the mic falls back gracefully
+  instead of crashing.
+- **Text → speech** uses `expo-speech` — the coach speaks its replies back (toggle
+  "Speak replies aloud" in Goals → Coach settings).
+
+> **Speech-to-text needs a native build, not Expo Go.** The iOS Speech framework
+> isn't linked into the Expo Go client. In Expo Go the app runs fully and the coach
+> speaks its replies, but the mic shows a "build a dev client" note instead of
+> listening. To talk out loud, build a development client:
+>
+> ```bash
+> npm install -g eas-cli
+> eas login
+> eas build --profile development --platform ios   # or run locally:
+> npx expo prebuild && npx expo run:ios            # needs Xcode on a Mac
+> ```
+>
+> Then `npm start` and open the dev client (not Expo Go). `eas.json` already defines
+> the `development` profile; permission strings are set via the config plugin in
+> `app.json`.
+
 ## How the coaching loop works (`src/coach/`)
 
 - `persona.ts` — builds the system prompt from Appendix A, your tuned dials, and a
@@ -55,13 +83,9 @@ navigates; the coach just tells you it isn't connected yet.
 - `useCoach.ts` — wires a turn end-to-end: append your message → run the turn →
   append (and optionally speak) the reply.
 
-## Honest limitations of this first cut
+## Still scoped for the next phase
 
-- **Speech-to-text** isn't live in Expo Go — the iOS Speech framework needs a native
-  dev build. The mic affordance is present and replies are spoken (TTS via
-  `expo-speech`); you type for now. Wiring `@react-native-voice/voice` in a dev build
-  is the next step.
-- **Calendar (EventKit) and Health (HealthKit)** are scoped in `app.json` but not yet
+- **Calendar (EventKit) and Health (HealthKit)** are declared in `app.json` but not yet
   wired — reminders/habits live in the local model. "Propose → approve" is modeled by
   the coach proposing and you confirming in the UI.
 - **Proactive notifications / the pattern engine** run only in-session here; the

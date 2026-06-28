@@ -24,7 +24,17 @@
     "android": {
       "package": "com.vitalij.lifecoach"
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "The coach listens when you talk to it out loud.",
+          "speechRecognitionPermission": "Used to turn what you say into text for the coach.",
+          "androidSpeechServicePackages": ["com.google.android.googlequicksearchbox"]
+        }
+      ]
+    ],
     "experiments": {
       "typedRoutes": false
     },

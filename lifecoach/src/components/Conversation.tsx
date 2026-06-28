@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Alert,
   KeyboardAvoidingView,
@@ -15,6 +15,7 @@ import * as Haptics from "expo-haptics";
 import { colors, font, radius, spacing } from "../theme";
 import { useData } from "../state/store";
 import { useCoach } from "../coach/useCoach";
+import { useVoiceInput } from "../voice/useVoiceInput";
 import type { ChatMessage } from "../state/types";
 
 interface Props {
@@ -28,34 +29,51 @@ export function Conversation({ accent = colors.amber, onboarding, emptyHint }: P
   const data = useData();
   const { send, thinking } = useCoach();
   const [draft, setDraft] = useState("");
-  const [voiceMode, setVoiceMode] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
+
+  // Final transcript → send it as a spoken turn.
+  const onFinalSpeech = useCallback(
+    (text: string) => {
+      setDraft("");
+      send(text, { via: "voice", onboarding });
+    },
+    [send, onboarding]
+  );
+  const voice = useVoiceInput(onFinalSpeech);
 
   useEffect(() => {
     const t = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
     return () => clearTimeout(t);
-  }, [data.conversation.length, thinking]);
+  }, [data.conversation.length, thinking, voice.partial]);
+
+  useEffect(() => {
+    if (voice.error) Alert.alert("Voice", voice.error);
+  }, [voice.error]);
 
   const submit = () => {
     const text = draft.trim();
     if (!text) return;
     setDraft("");
-    send(text, { via: voiceMode ? "voice" : "text", onboarding });
+    send(text, { via: "text", onboarding });
   };
 
   const onMic = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    if (!voiceMode) {
-      setVoiceMode(true);
+    if (!voice.available) {
+      // Expo Go: no native STT. Replies are still spoken; explain the path.
       Alert.alert(
         "Talking out loud",
-        "Replies will be spoken back to you. Live speech-to-text needs a native dev build (iOS Speech framework) — for now, type and the coach will speak its answers.",
+        "Live speech-to-text needs a native dev build (iOS Speech framework). In Expo Go you can type, and the coach speaks its replies back. Build a dev client to talk out loud — see the README.",
         [{ text: "Got it" }]
       );
-    } else {
-      setVoiceMode(false);
+      return;
     }
+    if (voice.recording) voice.stop();
+    else void voice.start();
   };
+
+  // While listening, surface the live transcript in the field.
+  const fieldValue = voice.recording ? voice.partial : draft;
 
   return (
     <KeyboardAvoidingView
@@ -85,18 +103,25 @@ export function Conversation({ accent = colors.amber, onboarding, emptyHint }: P
       <View style={styles.composer}>
         <Pressable
           onPress={onMic}
-          style={[styles.mic, voiceMode ? { backgroundColor: accent, borderColor: accent } : null]}
+          style={[styles.mic, voice.recording ? { backgroundColor: colors.danger, borderColor: colors.danger } : null]}
         >
           <Ionicons
-            name={voiceMode ? "mic" : "mic-outline"}
+            name={voice.recording ? "stop" : "mic-outline"}
             size={22}
-            color={voiceMode ? colors.onAccent : colors.textMuted}
+            color={voice.recording ? colors.onAccent : colors.textMuted}
           />
         </Pressable>
         <TextInput
-          value={draft}
+          value={fieldValue}
           onChangeText={setDraft}
-          placeholder={onboarding ? "Tell the coach…" : "Talk to your coach…"}
+          editable={!voice.recording}
+          placeholder={
+            voice.recording
+              ? "Listening…"
+              : onboarding
+              ? "Tell the coach…"
+              : "Talk to your coach…"
+          }
           placeholderTextColor={colors.textFaint}
           style={styles.input}
           multiline
@@ -106,10 +131,17 @@ export function Conversation({ accent = colors.amber, onboarding, emptyHint }: P
         />
         <Pressable
           onPress={submit}
-          disabled={!draft.trim()}
-          style={[styles.sendBtn, { backgroundColor: draft.trim() ? accent : colors.surfaceStrong }]}
+          disabled={!draft.trim() || voice.recording}
+          style={[
+            styles.sendBtn,
+            { backgroundColor: draft.trim() && !voice.recording ? accent : colors.surfaceStrong },
+          ]}
         >
-          <Ionicons name="arrow-up" size={22} color={draft.trim() ? colors.onAccent : colors.textFaint} />
+          <Ionicons
+            name="arrow-up"
+            size={22}
+            color={draft.trim() && !voice.recording ? colors.onAccent : colors.textFaint}
+          />
         </Pressable>
       </View>
     </KeyboardAvoidingView>
