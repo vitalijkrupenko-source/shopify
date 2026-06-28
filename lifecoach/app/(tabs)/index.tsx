@@ -6,12 +6,14 @@ import { Conversation } from "../../src/components/Conversation";
 import { colors, font, spacing } from "../../src/theme";
 import { useData } from "../../src/state/store";
 import { useCoach } from "../../src/coach/useCoach";
+import { hasApiKey } from "../../src/coach/client";
 
 export default function TalkScreen() {
   const data = useData();
   const { send, thinking } = useCoach();
 
   const greeting = greetingForTime(data.name);
+  const demo = data.settings.demoMode || !hasApiKey();
 
   const startCheckIn = () => {
     send("(Start a brief check-in with me right now.)", { via: "voice" });
@@ -21,7 +23,7 @@ export default function TalkScreen() {
     <GradientScreen aura="dusk" edges={["top"]}>
       <View style={styles.header}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.eyebrow}>YOUR COACH</Text>
+          <Text style={styles.eyebrow}>{demo ? "YOUR COACH · DEMO" : "YOUR COACH"}</Text>
           <Text style={styles.title}>{greeting}</Text>
         </View>
         <Pressable onPress={startCheckIn} disabled={thinking} style={styles.checkIn}>

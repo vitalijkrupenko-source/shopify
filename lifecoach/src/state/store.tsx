@@ -30,6 +30,7 @@ export const DEFAULT_SETTINGS: Settings = {
   eveningCheckIn: true,
   weeklyReview: true,
   voiceReplies: true,
+  demoMode: false,
   activeDomains: [
     "identity",
     "career",

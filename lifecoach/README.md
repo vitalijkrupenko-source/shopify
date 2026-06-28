@@ -36,8 +36,15 @@ npm start                     # scan the QR code with Expo Go
 
 ### The coach's brain
 
-Set `EXPO_PUBLIC_ANTHROPIC_API_KEY` in `.env`. Without it the app still runs and
-navigates; the coach just tells you it isn't connected yet.
+Set `EXPO_PUBLIC_ANTHROPIC_API_KEY` in `.env` to talk to the real Claude coach
+(`claude-opus-4-8`).
+
+**No key? Demo mode just works.** With no key set (or with "Demo mode" toggled on
+in Goals → Coach settings), the app uses an offline scripted coach
+(`src/coach/demoCoach.ts`) — believable, calm, Socratic replies that drive the
+*same* tools, so onboarding, Today, Dashboard and Goals all populate as you talk.
+The Talk header shows `DEMO` when it's active. This is the fastest way to try the
+whole experience on a phone via Expo Go — no key, no network.
 
 > **Security:** because this is a client-side app, the key ships in the bundle.
 > That's acceptable for a single-user personal build (the PRD's data stance), but

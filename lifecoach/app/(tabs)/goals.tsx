@@ -124,6 +124,11 @@ export default function GoalsScreen() {
               ))}
             </DialRow>
             <Toggle
+              label="Demo mode (no API key needed)"
+              value={s.demoMode}
+              onToggle={() => dispatch({ type: "UPDATE_SETTINGS", patch: { demoMode: !s.demoMode } })}
+            />
+            <Toggle
               label="Speak replies aloud"
               value={s.voiceReplies}
               onToggle={() => dispatch({ type: "UPDATE_SETTINGS", patch: { voiceReplies: !s.voiceReplies } })}

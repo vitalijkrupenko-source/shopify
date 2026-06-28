@@ -4,6 +4,7 @@ import { useStore, newId, todayISO } from "../state/store";
 import type { Habit, Task, LifeDomain } from "../state/types";
 import { buildSystemPrompt, buildOnboardingSystemPrompt } from "./persona";
 import { runCoachTurn } from "./runCoach";
+import { runDemoTurn } from "./demoCoach";
 import { hasApiKey } from "./client";
 
 interface SendOptions {
@@ -11,8 +12,7 @@ interface SendOptions {
   onboarding?: boolean;
 }
 
-const FALLBACK_NO_KEY =
-  "I'm not connected to my brain yet — add an Anthropic API key (EXPO_PUBLIC_ANTHROPIC_API_KEY) and restart, and I'll be right here.";
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Ties the conversation surface to the coaching brain: appends the user's
@@ -110,26 +110,47 @@ export function useCoach() {
       // Stop any in-progress speech when a new turn starts.
       Speech.stop();
 
-      if (!hasApiKey()) {
-        dispatch({
-          type: "ADD_MESSAGE",
-          message: {
-            id: newId(),
-            role: "assistant",
-            text: FALLBACK_NO_KEY,
-            via: "text",
-            createdAt: Date.now(),
-          },
-        });
-        return;
-      }
-
       setThinking(true);
       // Build history snapshot including the message we just added.
       const history = [
         ...data.conversation,
         { id: "tmp", role: "user" as const, text, via, createdAt: Date.now() },
       ];
+
+      // Demo mode (no key, or toggled on) uses the offline scripted coach so
+      // the full experience works with no network — driving the same tools.
+      const useDemo = data.settings.demoMode || !hasApiKey();
+
+      const speak = (reply: string) => {
+        if (data.settings.voiceReplies && reply) {
+          Speech.speak(reply, { rate: 0.96, pitch: 1.0 });
+        }
+      };
+      const addReply = (reply: string) =>
+        dispatch({
+          type: "ADD_MESSAGE",
+          message: { id: newId(), role: "assistant", text: reply, via: "text", createdAt: Date.now() },
+        });
+
+      if (useDemo) {
+        try {
+          // A beat of "thinking" so the typing indicator reads as natural.
+          await delay(700 + Math.min(text.length * 12, 900));
+          const { text: reply, actions } = runDemoTurn({
+            data,
+            history,
+            onboarding: opts.onboarding,
+            runTool,
+          });
+          setLastActions(actions);
+          addReply(reply);
+          speak(reply);
+        } finally {
+          setThinking(false);
+        }
+        return;
+      }
+
       const system = opts.onboarding
         ? buildOnboardingSystemPrompt(data)
         : buildSystemPrompt(data);
@@ -141,19 +162,8 @@ export function useCoach() {
           runTool,
         });
         setLastActions(actions);
-        dispatch({
-          type: "ADD_MESSAGE",
-          message: {
-            id: newId(),
-            role: "assistant",
-            text: reply,
-            via: "text",
-            createdAt: Date.now(),
-          },
-        });
-        if (data.settings.voiceReplies && reply) {
-          Speech.speak(reply, { rate: 0.96, pitch: 1.0 });
-        }
+        addReply(reply);
+        speak(reply);
       } catch (e) {
         dispatch({
           type: "ADD_MESSAGE",

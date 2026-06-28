@@ -84,6 +84,7 @@ export interface Settings {
   eveningCheckIn: boolean;
   weeklyReview: boolean;
   voiceReplies: boolean; // speak coach replies aloud (TTS)
+  demoMode: boolean; // use the offline scripted coach (no API key / network)
   activeDomains: LifeDomain[];
 }
 
