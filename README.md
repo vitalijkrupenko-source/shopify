@@ -104,4 +104,13 @@ The checkout is a working demo — **no payment is taken**. To accept real order
 
 ---
 
+## 📁 Also in this repo
+
+- **[`reviewloop/`](reviewloop/)** — ReviewLoop, a standalone automated Google
+  review generation system for local businesses (customer enrollment via
+  webhook/CSV, timed email/SMS ask sequences, click tracking, QR posters, and a
+  funnel dashboard). See its [README](reviewloop/README.md).
+
+---
+
 Made with love, for families.

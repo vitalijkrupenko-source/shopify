@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReviewLoop — Google review automation</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap header-row">
+    <div class="brand">⭐ <strong>ReviewLoop</strong> <span class="muted">Google review automation</span></div>
+    <div id="channel-status" class="muted small"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- business picker + add -->
+  <section class="card" id="biz-section">
+    <div class="row space-between">
+      <h2>Businesses</h2>
+      <button id="show-add-biz" class="btn">+ Add business</button>
+    </div>
+    <div id="biz-list" class="biz-list"></div>
+
+    <form id="add-biz-form" class="hidden stack">
+      <h3>Add a business</h3>
+      <label>Business name <input name="name" required placeholder="Joe's Pizza"></label>
+      <label>Google Place ID
+        <input name="placeId" placeholder="ChIJ...">
+        <span class="hint">Find it with the <a href="https://developers.google.com/maps/documentation/places/web-service/place-id" target="_blank" rel="noopener">Place ID finder</a>, or paste a review link below instead.</span>
+      </label>
+      <label>…or a direct review link <input name="reviewLink" placeholder="https://g.page/r/.../review"></label>
+      <div class="row">
+        <button class="btn primary" type="submit">Create</button>
+        <button class="btn" type="button" id="cancel-add-biz">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- selected business detail -->
+  <div id="detail" class="hidden">
+    <section class="stats" id="stats"></section>
+
+    <section class="card">
+      <div class="row space-between">
+        <h2 id="detail-name"></h2>
+        <div class="row">
+          <a id="qr-link" class="btn" target="_blank" rel="noopener">🖨 QR poster</a>
+          <a id="review-link" class="btn" target="_blank" rel="noopener">↗ Review page</a>
+          <button id="pause-btn" class="btn"></button>
+        </div>
+      </div>
+      <p class="muted small" id="detail-sub"></p>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h3>Enroll customers</h3>
+        <p class="hint">Every enrolled customer automatically gets your ask sequence. Enroll them right after a visit or purchase.</p>
+        <form id="add-cust-form" class="stack">
+          <div class="row">
+            <input name="name" placeholder="Name">
+            <input name="email" type="email" placeholder="Email">
+            <input name="phone" placeholder="Phone (+1…)">
+          </div>
+          <button class="btn primary" type="submit">Enroll customer</button>
+        </form>
+        <hr>
+        <form id="csv-form" class="stack">
+          <label>Bulk import (CSV with name, email, phone, date columns)
+            <textarea name="csv" rows="4" placeholder="name,email,phone&#10;Jane Doe,jane@example.com,+15550001111"></textarea>
+          </label>
+          <button class="btn" type="submit">Import CSV</button>
+          <span id="csv-result" class="hint"></span>
+        </form>
+        <hr>
+        <details>
+          <summary>Automate enrollment (POS / Shopify webhook)</summary>
+          <p class="hint">POST each completed sale to this endpoint and customers enroll themselves:</p>
+          <pre id="webhook-snippet" class="code"></pre>
+        </details>
+      </section>
+
+      <section class="card">
+        <h3>Ask sequence</h3>
+        <p class="hint">Timed follow-ups stop automatically as soon as the customer clicks the review link or unsubscribes.</p>
+        <div id="sequence-editor" class="stack"></div>
+        <div class="row">
+          <button id="add-step" class="btn">+ Add step</button>
+          <button id="save-sequence" class="btn primary">Save sequence</button>
+        </div>
+        <span id="seq-result" class="hint"></span>
+      </section>
+    </div>
+
+    <section class="card">
+      <h3>Customers</h3>
+      <table id="cust-table">
+        <thead><tr><th>Name</th><th>Contact</th><th>Status</th><th>Step</th><th>Next send</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer class="muted small">
+    ReviewLoop asks every customer for an <em>honest</em> review. It never filters by sentiment
+    ("review gating"), never posts reviews itself, and never offers incentives — all of which
+    violate Google's review policies and the FTC rule on consumer reviews.
+  </footer>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
