@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Stage {
+  PROSPECT
+  CONTACTED
+  REPLIED
+  CALL_BOOKED
+  PILOT
+  CLIENT
+  LOST
+}
+
+enum ActivityType {
+  EMAIL_SENT
+  REPLY_RECEIVED
+  CALL
+  NOTE
+  STAGE_CHANGE
+}
+
+model Business {
+  id                    String     @id @default(cuid())
+  name                  String
+  city                  String
+  googlePlaceId         String?    @unique
+  phone                 String?
+  email                 String?
+  website               String?
+  stage                 Stage      @default(PROSPECT)
+  pilotStartDate        DateTime?
+  clientSince           DateTime?
+  monthlyFee            Decimal?   @db.Decimal(10, 2)
+  notes                 String     @default("") @db.Text
+  competitorName        String?
+  competitorReviewCount Int?
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  snapshots             Snapshot[]
+  activities            Activity[]
+}
+
+model Snapshot {
+  id          String   @id @default(cuid())
+  businessId  String
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  date        DateTime @db.Date
+  rating      Float
+  reviewCount Int
+
+  @@unique([businessId, date])
+  @@index([businessId, date])
+}
+
+model Activity {
+  id         String       @id @default(cuid())
+  businessId String
+  business   Business     @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  type       ActivityType
+  content    String       @db.Text
+  createdAt  DateTime     @default(now())
+
+  @@index([businessId, createdAt])
+}
