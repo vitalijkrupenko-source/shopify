@@ -63,7 +63,8 @@ struct VoiceAddView: View {
         VStack(spacing: 6) {
             ForEach(["“Gym tomorrow from 7 to 8am”",
                      "“Dinner with mum on Friday at 7pm”",
-                     "“Deep work today at 2pm for 2 hours”"], id: \.self) { example in
+                     "“I have a meeting at 3, push everything else later”",
+                     "“Move dinner to 8pm” · “Cancel gym today”"], id: \.self) { example in
                 Text(example)
                     .font(.subheadline)
                     .foregroundStyle(Theme.textTertiary)
@@ -73,12 +74,12 @@ struct VoiceAddView: View {
 
     private func confirmCard(_ command: ParsedCommand) -> some View {
         VStack(spacing: 14) {
-            if let block = command.block {
+            if let action = command.action {
                 HStack(spacing: 13) {
-                    CategoryBadge(category: block.category)
+                    CategoryBadge(category: command.category)
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(block.title).font(.headline).foregroundStyle(Theme.textPrimary)
-                        Text(command.summary.replacingOccurrences(of: "\(block.title) · ", with: ""))
+                        Text(command.summary).font(.headline).foregroundStyle(Theme.textPrimary)
+                        Text(command.detail)
                             .font(.subheadline).foregroundStyle(Theme.textSecondary)
                     }
                     Spacer()
@@ -86,12 +87,20 @@ struct VoiceAddView: View {
                 .padding(14)
                 .cardStyle(Theme.cardHi)
 
-                PrimaryButton(title: "Add to schedule", systemImage: "checkmark") {
+                PrimaryButton(title: confirmTitle(for: action), systemImage: "checkmark") {
                     speech.stop()
-                    store.add(block)
+                    store.apply(action)
                     dismiss()
                 }
             }
+        }
+    }
+
+    private func confirmTitle(for action: VoiceAction) -> String {
+        switch action {
+        case .add: return "Add to schedule"
+        case .cancel: return "Remove it"
+        default: return "Do it"
         }
     }
 
@@ -123,7 +132,7 @@ struct VoiceAddView: View {
 
     private func reparse(_ text: String) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        parsed = trimmed.isEmpty ? nil : CommandParser.parse(trimmed, now: referenceNow)
+        parsed = trimmed.isEmpty ? nil : CommandParser.parse(trimmed, in: store.data, now: referenceNow)
     }
 
     /// Anchor parsing to the day the user is viewing (so "at 7pm" with no day

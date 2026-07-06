@@ -139,6 +139,13 @@ struct ScheduleBlock: Codable, Identifiable, Equatable {
 
 // MARK: - Root document
 
+/// Hides one recurring block on one weekday — how "cancel gym today" or
+/// "push everything later" affects a single day without touching the template.
+struct DayException: Codable, Equatable {
+    var weekday: Int
+    var blockID: UUID
+}
+
 /// Everything the app persists. One small JSON file, shared with the widgets
 /// through the App Group container.
 struct ScheduleData: Codable, Equatable {
@@ -147,15 +154,19 @@ struct ScheduleData: Codable, Equatable {
     /// Lead time (minutes) for the gentle "coming up" heads-up.
     var reminderLeadMinutes: Int = 45
     var remindersEnabled: Bool = true
+    /// Recurring blocks suppressed on specific weekdays.
+    var exceptions: [DayException] = []
 
     static let empty = ScheduleData()
 
     init(blocks: [ScheduleBlock] = [], hasOnboarded: Bool = false,
-         reminderLeadMinutes: Int = 45, remindersEnabled: Bool = true) {
+         reminderLeadMinutes: Int = 45, remindersEnabled: Bool = true,
+         exceptions: [DayException] = []) {
         self.blocks = blocks
         self.hasOnboarded = hasOnboarded
         self.reminderLeadMinutes = reminderLeadMinutes
         self.remindersEnabled = remindersEnabled
+        self.exceptions = exceptions
     }
 
     // Tolerant decoding: missing keys fall back to defaults so an app update
@@ -166,5 +177,11 @@ struct ScheduleData: Codable, Equatable {
         hasOnboarded = try c.decodeIfPresent(Bool.self, forKey: .hasOnboarded) ?? false
         reminderLeadMinutes = try c.decodeIfPresent(Int.self, forKey: .reminderLeadMinutes) ?? 45
         remindersEnabled = try c.decodeIfPresent(Bool.self, forKey: .remindersEnabled) ?? true
+        exceptions = try c.decodeIfPresent([DayException].self, forKey: .exceptions) ?? []
+    }
+
+    /// True when `block` (recurring) is hidden on `weekday`.
+    func isHidden(_ block: ScheduleBlock, on weekday: Int) -> Bool {
+        exceptions.contains { $0.weekday == weekday && $0.blockID == block.id }
     }
 }

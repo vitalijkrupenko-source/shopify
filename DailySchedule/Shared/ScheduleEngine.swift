@@ -6,11 +6,14 @@ import Foundation
 enum ScheduleEngine {
 
     /// The ordered list of blocks for a specific date: every recurring block
-    /// plus any appointments pinned to that weekday.
+    /// (not hidden that weekday) plus any appointments pinned to that weekday.
     static func blocks(for date: Date, in data: ScheduleData) -> [ScheduleBlock] {
-        let weekday = Calendar.current.component(.weekday, from: date)
-        return data.blocks
-            .filter { $0.isRecurring || $0.weekday == weekday }
+        blocks(forWeekday: Calendar.current.component(.weekday, from: date), in: data)
+    }
+
+    static func blocks(forWeekday weekday: Int, in data: ScheduleData) -> [ScheduleBlock] {
+        data.blocks
+            .filter { $0.isRecurring ? !data.isHidden($0, on: weekday) : $0.weekday == weekday }
             .sorted { $0.start < $1.start }
     }
 

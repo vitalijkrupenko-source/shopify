@@ -13,13 +13,29 @@ one question: **"what am I doing right now, and what's next?"**
   points (wake / sleep) and your work hours. Daily *generates* a full, clean,
   non‑overlapping day from that — training, cooking, meals, focus, family time —
   and repeats it every day.
-- **One button: the mic.** To add anything else you just speak:
-  *"Add training on Wednesday from 7 to 9pm."* It's parsed **on‑device** into a
-  block — no accounts, no server, no API keys.
+- **One button: the mic.** To change anything you just speak. Plain on‑device
+  pattern matching — **no AI, no server, no accounts**:
+  - *"Add training on Wednesday from 7 to 9pm"*
+  - *"I have a meeting at 3, push everything else later"* — inserts the
+    meeting and slides every later block on that day out of its way
+  - *"Push everything back half an hour"*
+  - *"Move dinner to 8pm"* · *"Cancel gym today"* — one‑day changes leave the
+    daily template untouched (the template block is hidden that day only)
 - **Calm status, never nagging.** Instead of alerts, Daily shows a quiet
   **Live Activity** on the lock screen and Dynamic Island — *"You're training"*,
   *"In 45m: shopping"* — plus one **passive** heads‑up before each block.
 - **Widgets** for the home screen and lock screen show your current + next task.
+
+## Try it on your phone right now
+
+`web/index.html` is a self‑contained web version of Daily — same design, same
+onboarding, same voice commands (Safari's built‑in speech recognition; typing
+works everywhere). No build step, no dependencies: host the single file
+anywhere (GitHub Pages, Netlify Drop) and open it on your phone, or open it
+locally. Data lives in the browser's local storage.
+
+The web version is a preview: the lock‑screen widget, Dynamic Island live
+status, and pre‑task reminders are native‑only and need the iOS app below.
 
 ## What's in here
 
@@ -39,7 +55,8 @@ DailySchedule/
 │  ├─ System/                #   NotificationScheduler, LiveActivityManager
 │  ├─ Views/                 #   Onboarding, Today, timeline, voice sheet
 │  └─ Resources/             #   Info.plist, entitlements, Assets (icon)
-└─ Widget/                   #   Home + lock-screen widgets, Live Activity UI
+├─ Widget/                   #   Home + lock-screen widgets, Live Activity UI
+└─ web/index.html            #   Self-contained phone-ready web preview
 ```
 
 ## Build & run
