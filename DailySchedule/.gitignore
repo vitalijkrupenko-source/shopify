@@ -1,0 +1,9 @@
+# XcodeGen generates this — don't commit it.
+Daily.xcodeproj/
+
+# Xcode / build artifacts
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+.DS_Store
