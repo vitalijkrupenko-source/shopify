@@ -1,9 +1,9 @@
 {
-  "name": "little-chapters",
+  "name": "reviewrise",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Little Chapters — turn your camera roll into a printed keepsake memory book.",
+  "description": "ReviewRise — help local businesses get more Google reviews and rank higher in local search.",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",

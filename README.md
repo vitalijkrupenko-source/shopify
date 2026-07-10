@@ -1,50 +1,41 @@
-# Little Chapters 📖
+# ReviewRise ⭐
 
-**Turn your camera roll into a keepsake.**
+**Več Google ocen. Višje uvrstitve. Več strank.**
 
-Little Chapters is an online store that lets families turn the photos sitting on
-their phones into a beautiful, printed memory book. Parents have thousands of
-photos of their kids and almost never print them — this removes all the friction:
-upload your favorites, pick a design, preview the whole book, and order it.
+ReviewRise is a marketing site for a local-business growth service: it helps
+local businesses collect more Google reviews and rank higher in local search.
+More reviews mean a higher spot on Google — which means more calls, more jobs
+and more revenue.
 
-This repo contains the full customer-facing web app: a high-converting landing
-page **and** the photo-book builder (upload → design → preview → checkout).
+The site is fully **bilingual (Slovenian ⇄ English)** with a one-click language
+switch in the navigation. Slovenian is the default; the visitor's choice is
+remembered in `localStorage`.
 
 ---
 
 ## ✨ What's inside
 
-### High-converting landing page
-- Hero with clear value proposition and primary CTA
-- Social proof (stats bar, star ratings, testimonials)
-- Problem framing ("your memories are stuck behind a screen")
-- 3-step "How it works"
-- Showcase of all 5 cover designs
-- Two-format comparison + transparent pricing
-- FAQ and a final call-to-action
+A single-page, high-converting marketing site:
 
-### The book builder (`/create`)
-A 5-step guided flow:
+- **Hero** — value proposition, dual CTAs, trust line, headline stats, and an
+  animated Google-reviews dashboard mockup
+- **Trust bar** — local businesses that use the service
+- **Why it matters** — the case for reviews, backed by stats
+- **How it works** — 3 simple steps (connect → invite → grow)
+- **Features** — 6 capabilities (automated invitations, bad-experience filter,
+  QR codes, rank tracking, AI review replies, review widgets)
+- **Results** — headline outcome stats + a customer quote
+- **Testimonials** — three local-business reviews
+- **Pricing** — three tiers (Starter / Growth / Multi), Growth highlighted
+- **FAQ** — accordion of common questions
+- **Final CTA** and **footer**
 
-1. **Size** — choose a format (see below)
-2. **Design** — pick one of 5 cover designs and personalize the title/date
-3. **Photos** — drag-and-drop upload, reorder, remove, add captions
-4. **Preview** — flip through the *entire* book exactly as it will print, with a
-   live order summary
-5. **Order** — shipping details and order placement (demo checkout)
-
-### Built for the way people actually take photos
-iPhone photos are vertical, so the layout engine is orientation-aware:
-
-- **Pocket Book** (5.5"×7") — **one photo per page**, so vertical shots fill the
-  whole page beautifully. From **$39** (20 pages included).
-- **Keepsake Book** (8.5"×11") — **smart multi-photo layouts**. The engine looks
-  ahead at each photo's orientation and pairs portraits side-by-side, stacks
-  landscapes, and builds 3- and 4-photo grids so every page looks designed, not
-  crammed. From **$59** (20 pages included).
-
-Pricing is a flat base price (includes 20 pages) plus a small per-extra-page fee,
-computed live as photos are added.
+### Language switching
+All copy lives in `src/i18n/translations.ts`, keyed by language (`sl` / `en`).
+A `LanguageProvider` (`src/i18n/LanguageContext.tsx`) exposes the active
+language, a setter, and the resolved translation object via a `useLanguage()`
+hook. Switching also updates `<html lang>`, the document title, and the meta
+description.
 
 ---
 
@@ -68,40 +59,37 @@ npm run preview  # preview the production build
 
 ```
 src/
-  data/
-    config.ts        Brand, the two formats, and pricing config
-    designs.ts       The 5 cover designs (CSS-rendered, no image assets)
-  lib/
-    types.ts         Photo / BookPage types
-    image.ts         File → Photo (measures size, classifies orientation; EXIF-safe)
-    layout.ts        Auto-layout engine (photos → laid-out pages)
-    pricing.ts       Flat base + per-extra-page pricing
-  store/
-    BuilderContext.tsx  App state + derived book/price hooks
+  i18n/
+    translations.ts     All Slovenian + English copy (single source of truth)
+    LanguageContext.tsx  Provider, useLanguage() hook, persistence
   components/
-    shared/          Logo, reusable Cover renderer
-    landing/         Nav, Hero, all landing sections, Footer
-    builder/         The 5 step screens + book preview renderer
-  pages/
-    LandingPage.tsx
-    BuilderPage.tsx  Stepper, navigation, confirmation
+    Icons.tsx           Inline SVG icons (stars, Google G, feature glyphs)
+    Nav.tsx             Sticky nav, logo, language switch, mobile menu
+    Hero.tsx            Hero + animated dashboard mockup
+    Sections.tsx        Trust bar, why, how, features, results, testimonials,
+                        pricing, FAQ, final CTA
+    Footer.tsx          Footer
+  App.tsx               Wraps everything in the LanguageProvider
+  main.tsx              Entry point
+  index.css             Blue design system + all component styles
 ```
+
+The theme is a trustworthy **blue** palette defined as CSS custom properties at
+the top of `src/index.css`.
 
 ---
 
 ## 🔌 Going live (next steps)
 
-The checkout is a working demo — **no payment is taken**. To accept real orders:
+The CTAs are placeholders. To turn this into a working product:
 
-- **Payments & fulfillment:** wire the "Place order" action to **Shopify**
-  (e.g. create a draft order via the Admin API, or use Shopify Checkout) or to
-  **Stripe Checkout**. Pricing is already computed in `src/lib/pricing.ts`.
-- **Photo storage:** photos currently live in the browser only (object URLs).
-  Upload them to durable storage (e.g. Shopify Files, S3, or Cloudinary) on
-  order so the print partner can fetch the originals.
-- **Print fulfillment:** connect a print-on-demand book partner (Peecho, Prodigi,
-  Blurb API, etc.) and send the ordered page layout + image URLs.
+- **Sign-up / auth:** wire the "Start free" and "Log in" actions to your auth
+  and onboarding flow.
+- **Google integration:** connect the Google Business Profile API to import
+  existing reviews and read live ratings/rank.
+- **Invitations:** connect an SMS provider (e.g. Twilio) and an email provider
+  to send review invitations automatically after a completed job.
 
 ---
 
-Made with love, for families.
+Made for local businesses that deserve to be found first.

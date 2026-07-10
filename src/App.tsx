@@ -1,26 +1,36 @@
-import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import BuilderPage from "./pages/BuilderPage";
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
+import { LanguageProvider } from "./i18n/LanguageContext";
+import { Nav } from "./components/Nav";
+import { Hero } from "./components/Hero";
+import {
+  LogoBar,
+  Problem,
+  HowItWorks,
+  Features,
+  Results,
+  Testimonials,
+  Pricing,
+  FAQ,
+  FinalCta,
+} from "./components/Sections";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/create" element={<BuilderPage />} />
-        <Route path="*" element={<LandingPage />} />
-      </Routes>
-    </>
+    <LanguageProvider>
+      <Nav />
+      <main>
+        <Hero />
+        <LogoBar />
+        <Problem />
+        <HowItWorks />
+        <Features />
+        <Results />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <FinalCta />
+      </main>
+      <Footer />
+    </LanguageProvider>
   );
 }
