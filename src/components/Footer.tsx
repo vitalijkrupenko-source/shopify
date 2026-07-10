@@ -33,7 +33,7 @@ export function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>
-          © {new Date().getFullYear()} ReviewRise. {f.rights}
+          © {new Date().getFullYear()} Revju. {f.rights}
         </span>
         <span className="footer-made">Ljubljana · Slovenija</span>
       </div>

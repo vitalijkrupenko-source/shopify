@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/memory-book-store-s35vsz]
+    branches: [claude/review-harvest-website-clone-7yp772]
   workflow_dispatch:
 
 permissions:

@@ -115,7 +115,7 @@ export interface Translation {
 export const translations: Record<Lang, Translation> = {
   sl: {
     meta: {
-      title: "ReviewRise — Več Google ocen, višje uvrstitve, več strank",
+      title: "Revju — Več Google ocen, višje uvrstitve, več strank",
       description:
         "Pomagamo lokalnim podjetjem pridobiti več Google ocen in se uvrstiti višje v lokalnem iskanju. Več ocen pomeni več klicev, več poslov in več prihodka.",
     },
@@ -134,7 +134,7 @@ export const translations: Record<Lang, Translation> = {
       titleHighlight: "Google ocen",
       title2: "in prehitite konkurenco",
       subtitle:
-        "ReviewRise samodejno pošilja vašim strankam vabila za oceno v pravem trenutku. Več ocen pomeni višjo uvrstitev na Googlu — kar pomeni več klicev, več naročil in več prihodka.",
+        "Revju samodejno pošilja vašim strankam vabila za oceno v pravem trenutku. Več ocen pomeni višjo uvrstitev na Googlu — kar pomeni več klicev, več naročil in več prihodka.",
       ctaPrimary: "Začni brezplačno",
       ctaSecondary: "Rezerviraj demo",
       trust: "Brez pogodbe · Postavljeno v 5 minutah · Prekliči kadarkoli",
@@ -177,7 +177,7 @@ export const translations: Record<Lang, Translation> = {
       kicker: "Kako deluje",
       title: "Več ocen v treh preprostih korakih",
       subtitle:
-        "Nastavite enkrat in ReviewRise poskrbi za ostalo. Brez zapletov, brez ročnega dela.",
+        "Nastavite enkrat in Revju poskrbi za ostalo. Brez zapletov, brez ročnega dela.",
       steps: [
         {
           number: "01",
@@ -238,7 +238,7 @@ export const translations: Record<Lang, Translation> = {
       kicker: "Rezultati",
       title: "Številke, ki spremenijo posel",
       subtitle:
-        "Povprečni rezultati naših strank v prvih 90 dneh uporabe ReviewRise.",
+        "Povprečni rezultati naših strank v prvih 90 dneh uporabe Revju.",
       stats: [
         { value: "3,4×", label: "več novih ocen na mesec" },
         { value: "+38 %", label: "več klicev in poizvedb" },
@@ -246,7 +246,7 @@ export const translations: Record<Lang, Translation> = {
         { value: "#1", label: "povprečna uvrstitev v okolici" },
       ],
       quote:
-        "Prej smo dobili morda eno oceno na mesec. Z ReviewRise jih dobimo 15 do 20. Zdaj smo prvi na Googlu za »mizar Ljubljana« in telefon ne neha zvoniti.",
+        "Prej smo dobili morda eno oceno na mesec. Z Revju jih dobimo 15 do 20. Zdaj smo prvi na Googlu za »mizar Ljubljana« in telefon ne neha zvoniti.",
       quoteAuthor: "Marko Novak",
       quoteRole: "Lastnik, Mizarstvo Novak",
     },
@@ -333,7 +333,7 @@ export const translations: Record<Lang, Translation> = {
       items: [
         {
           q: "Ali je pošiljanje vabil za oceno skladno s pravili Googla?",
-          a: "Da. Google izrecno spodbuja podjetja, naj prosijo stranke za ocene. ReviewRise pošilja prijazna vabila vsem strankam enako in nikoli ne ponuja plačila ali nagrad za ocene, kar je popolnoma v skladu s smernicami.",
+          a: "Da. Google izrecno spodbuja podjetja, naj prosijo stranke za ocene. Revju pošilja prijazna vabila vsem strankam enako in nikoli ne ponuja plačila ali nagrad za ocene, kar je popolnoma v skladu s smernicami.",
         },
         {
           q: "Koliko časa traja, da vidim rezultate?",
@@ -345,7 +345,7 @@ export const translations: Record<Lang, Translation> = {
         },
         {
           q: "Ali potrebujem tehnično znanje?",
-          a: "Ne. Postavitev traja približno pet minut in vam pomagamo pri vsakem koraku. Če znate uporabljati telefon, znate uporabljati ReviewRise.",
+          a: "Ne. Postavitev traja približno pet minut in vam pomagamo pri vsakem koraku. Če znate uporabljati telefon, znate uporabljati Revju.",
         },
         {
           q: "Ali lahko kadarkoli prekličem?",
@@ -363,7 +363,7 @@ export const translations: Record<Lang, Translation> = {
     },
     footer: {
       tagline:
-        "ReviewRise pomaga lokalnim podjetjem pridobiti več Google ocen, se uvrstiti višje in pridobiti več strank.",
+        "Revju pomaga lokalnim podjetjem pridobiti več Google ocen, se uvrstiti višje in pridobiti več strank.",
       productTitle: "Produkt",
       productLinks: ["Kako deluje", "Zmožnosti", "Cenik", "Rezerviraj demo"],
       companyTitle: "Podjetje",
@@ -375,7 +375,7 @@ export const translations: Record<Lang, Translation> = {
   },
   en: {
     meta: {
-      title: "ReviewRise — More Google reviews, higher rankings, more customers",
+      title: "Revju — More Google reviews, higher rankings, more customers",
       description:
         "We help local businesses get more Google reviews and rank higher in local search. More reviews means more calls, more jobs and more revenue.",
     },
@@ -394,7 +394,7 @@ export const translations: Record<Lang, Translation> = {
       titleHighlight: "Google reviews",
       title2: "and outrank your competition",
       subtitle:
-        "ReviewRise automatically sends your customers review invitations at the perfect moment. More reviews means a higher spot on Google — which means more calls, more bookings and more revenue.",
+        "Revju automatically sends your customers review invitations at the perfect moment. More reviews means a higher spot on Google — which means more calls, more bookings and more revenue.",
       ctaPrimary: "Start free",
       ctaSecondary: "Book a demo",
       trust: "No contract · Set up in 5 minutes · Cancel anytime",
@@ -437,7 +437,7 @@ export const translations: Record<Lang, Translation> = {
       kicker: "How it works",
       title: "More reviews in three simple steps",
       subtitle:
-        "Set it up once and ReviewRise handles the rest. No hassle, no manual work.",
+        "Set it up once and Revju handles the rest. No hassle, no manual work.",
       steps: [
         {
           number: "01",
@@ -498,7 +498,7 @@ export const translations: Record<Lang, Translation> = {
       kicker: "Results",
       title: "Numbers that change your business",
       subtitle:
-        "Average results our customers see in their first 90 days on ReviewRise.",
+        "Average results our customers see in their first 90 days on Revju.",
       stats: [
         { value: "3.4×", label: "more new reviews per month" },
         { value: "+38%", label: "more calls and enquiries" },
@@ -506,7 +506,7 @@ export const translations: Record<Lang, Translation> = {
         { value: "#1", label: "average local rank" },
       ],
       quote:
-        "We used to get maybe one review a month. With ReviewRise we get 15 to 20. We're now number one on Google for 'carpenter near me' and the phone doesn't stop ringing.",
+        "We used to get maybe one review a month. With Revju we get 15 to 20. We're now number one on Google for 'carpenter near me' and the phone doesn't stop ringing.",
       quoteAuthor: "Mark Novak",
       quoteRole: "Owner, Novak Woodworks",
     },
@@ -593,7 +593,7 @@ export const translations: Record<Lang, Translation> = {
       items: [
         {
           q: "Is sending review invitations compliant with Google's rules?",
-          a: "Yes. Google explicitly encourages businesses to ask customers for reviews. ReviewRise sends friendly invitations to all customers equally and never offers payment or rewards for reviews, which is fully within the guidelines.",
+          a: "Yes. Google explicitly encourages businesses to ask customers for reviews. Revju sends friendly invitations to all customers equally and never offers payment or rewards for reviews, which is fully within the guidelines.",
         },
         {
           q: "How long until I see results?",
@@ -605,7 +605,7 @@ export const translations: Record<Lang, Translation> = {
         },
         {
           q: "Do I need technical skills?",
-          a: "No. Setup takes about five minutes and we help you every step of the way. If you can use a phone, you can use ReviewRise.",
+          a: "No. Setup takes about five minutes and we help you every step of the way. If you can use a phone, you can use Revju.",
         },
         {
           q: "Can I cancel anytime?",
@@ -623,7 +623,7 @@ export const translations: Record<Lang, Translation> = {
     },
     footer: {
       tagline:
-        "ReviewRise helps local businesses get more Google reviews, rank higher and win more customers.",
+        "Revju helps local businesses get more Google reviews, rank higher and win more customers.",
       productTitle: "Product",
       productLinks: ["How it works", "Features", "Pricing", "Book a demo"],
       companyTitle: "Company",

@@ -16,7 +16,7 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-const STORAGE_KEY = "reviewrise-lang";
+const STORAGE_KEY = "revju-lang";
 
 function getInitialLang(): Lang {
   if (typeof window === "undefined") return "sl";

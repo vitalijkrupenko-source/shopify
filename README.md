@@ -1,8 +1,8 @@
-# ReviewRise ⭐
+# Revju ⭐
 
 **Več Google ocen. Višje uvrstitve. Več strank.**
 
-ReviewRise is a marketing site for a local-business growth service: it helps
+Revju is a marketing site for a local-business growth service: it helps
 local businesses collect more Google reviews and rank higher in local search.
 More reviews mean a higher spot on Google — which means more calls, more jobs
 and more revenue.

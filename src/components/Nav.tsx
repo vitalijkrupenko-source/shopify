@@ -5,12 +5,12 @@ import { StarIcon } from "./Icons";
 
 export function Logo() {
   return (
-    <a href="#top" className="logo" aria-label="ReviewRise">
+    <a href="#top" className="logo" aria-label="Revju">
       <span className="logo-mark">
         <StarIcon className="logo-star" />
       </span>
       <span className="logo-word">
-        Review<span className="logo-word-accent">Rise</span>
+        Rev<span className="logo-word-accent">ju</span>
       </span>
     </a>
   );
