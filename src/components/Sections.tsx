@@ -1,39 +1,24 @@
 import { useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
 import {
-  FeatureIcon,
   StarIcon,
   CheckIcon,
   ChevronIcon,
-  GoogleGIcon,
   ArrowIcon,
+  GoogleGIcon,
 } from "./Icons";
 
-function Kicker({ children }: { children: React.ReactNode }) {
-  return <span className="kicker">{children}</span>;
-}
-
-export function LogoBar() {
+export function TrustBar() {
   const { t } = useLanguage();
-  const names = [
-    "Mizarstvo Novak",
-    "Salon Bella",
-    "Avtoservis Kovač",
-    "Ordinacija Nasmeh",
-    "Pekarna Kruhek",
-    "Vrtnarija Zelenko",
-  ];
   return (
-    <section className="logobar">
-      <div className="container">
-        <p className="logobar-title">{t.logos.title}</p>
-        <div className="logobar-row">
-          {names.map((n) => (
-            <span key={n} className="logobar-item">
-              {n}
-            </span>
-          ))}
-        </div>
+    <section className="trustbar">
+      <div className="container trustbar-row">
+        {t.trust.items.map((item, i) => (
+          <span key={i} className="trustbar-item">
+            <CheckIcon className="trustbar-check" />
+            {item}
+          </span>
+        ))}
       </div>
     </section>
   );
@@ -43,20 +28,85 @@ export function Problem() {
   const { t } = useLanguage();
   const p = t.problem;
   return (
-    <section className="section problem" id="why">
+    <section className="section problem" id="problem">
       <div className="container">
         <div className="section-head">
-          <Kicker>{p.kicker}</Kicker>
-          <h2>{p.title}</h2>
+          <h2>{p.h2}</h2>
           <p className="section-sub">{p.subtitle}</p>
         </div>
         <div className="problem-grid">
-          {p.items.map((item, i) => (
+          {p.cards.map((c, i) => (
             <div key={i} className="problem-card">
-              <div className="problem-stat">{item.stat}</div>
-              <p>{item.text}</p>
+              <span className="problem-num">{i + 1}</span>
+              <h3>{c.title}</h3>
+              <p>{c.text}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Change() {
+  const { t } = useLanguage();
+  const c = t.change;
+  return (
+    <section className="section change">
+      <div className="container">
+        <div className="section-head">
+          <h2>{c.h2}</h2>
+        </div>
+        <div className="change-grid">
+          {c.points.map((pt, i) => (
+            <div key={i} className="change-item">
+              <CheckIcon className="change-check" />
+              <div>
+                <strong>{pt.title}</strong> <span>{pt.text}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function CaseStudy() {
+  const { t } = useLanguage();
+  const c = t.caseStudy;
+  return (
+    <section className="section casestudy" id="rezultati">
+      <div className="container">
+        <div className="casestudy-card">
+          <div className="casestudy-body">
+            <span className="casestudy-eyebrow">{c.eyebrow}</span>
+            <h2 className="casestudy-h2">{c.h2}</h2>
+            <p className="casestudy-context">{c.context}</p>
+            <span className="casestudy-pending">{c.pending}</span>
+          </div>
+          <div className="casestudy-visual" aria-hidden="true">
+            <div className="cs-google">
+              <GoogleGIcon className="cs-google-icon" />
+              <span>{c.result}</span>
+            </div>
+            <div className="cs-numbers">
+              <div className="cs-side">
+                <span className="cs-num cs-before">3</span>
+                <span className="cs-label">{c.beforeLabel}</span>
+              </div>
+              <ArrowIcon className="cs-arrow" />
+              <div className="cs-side">
+                <span className="cs-num cs-after">20</span>
+                <span className="cs-label">{c.afterLabel}</span>
+              </div>
+            </div>
+            <div className="cs-stars">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <StarIcon key={i} className="star" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -67,22 +117,17 @@ export function HowItWorks() {
   const { t } = useLanguage();
   const h = t.how;
   return (
-    <section className="section how" id="how">
+    <section className="section how" id="kako-deluje">
       <div className="container">
         <div className="section-head">
-          <Kicker>{h.kicker}</Kicker>
-          <h2>{h.title}</h2>
-          <p className="section-sub">{h.subtitle}</p>
+          <h2>{h.h2}</h2>
         </div>
         <div className="how-grid">
           {h.steps.map((s, i) => (
             <div key={i} className="how-card">
-              <div className="how-number">{s.number}</div>
+              <div className="how-number">{s.num}</div>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
-              {i < h.steps.length - 1 && (
-                <ArrowIcon className="how-connector" />
-              )}
             </div>
           ))}
         </div>
@@ -91,102 +136,90 @@ export function HowItWorks() {
   );
 }
 
-export function Features() {
+export function FirstWeek() {
   const { t } = useLanguage();
-  const f = t.features;
+  const f = t.firstWeek;
   return (
-    <section className="section features" id="features">
-      <div className="container">
+    <section className="section firstweek">
+      <div className="container container-narrow">
         <div className="section-head">
-          <Kicker>{f.kicker}</Kicker>
-          <h2>{f.title}</h2>
-          <p className="section-sub">{f.subtitle}</p>
+          <h2>{f.h2}</h2>
         </div>
-        <div className="features-grid">
-          {f.items.map((item, i) => (
-            <div key={i} className="feature-card">
-              <div className="feature-icon">
-                <FeatureIcon name={item.icon} className="feature-icon-svg" />
+        <div className="timeline">
+          {f.items.map((it, i) => (
+            <div key={i} className="timeline-item">
+              <div className="timeline-marker">
+                <span className="timeline-dot" />
+                {i < f.items.length - 1 && <span className="timeline-line" />}
               </div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Results() {
-  const { t } = useLanguage();
-  const r = t.results;
-  return (
-    <section className="section results" id="results">
-      <div className="container">
-        <div className="section-head">
-          <Kicker>{r.kicker}</Kicker>
-          <h2>{r.title}</h2>
-          <p className="section-sub">{r.subtitle}</p>
-        </div>
-        <div className="results-stats">
-          {r.stats.map((s, i) => (
-            <div key={i} className="results-stat">
-              <strong>{s.value}</strong>
-              <span>{s.label}</span>
-            </div>
-          ))}
-        </div>
-        <figure className="results-quote">
-          <div className="results-quote-stars" aria-hidden="true">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon key={i} className="star" />
-            ))}
-          </div>
-          <blockquote>“{r.quote}”</blockquote>
-          <figcaption>
-            <strong>{r.quoteAuthor}</strong>
-            <span>{r.quoteRole}</span>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-  );
-}
-
-export function Testimonials() {
-  const { t } = useLanguage();
-  const tt = t.testimonials;
-  return (
-    <section className="section testimonials" id="testimonials">
-      <div className="container">
-        <div className="section-head">
-          <Kicker>{tt.kicker}</Kicker>
-          <h2>{tt.title}</h2>
-          <p className="section-sub">{tt.subtitle}</p>
-        </div>
-        <div className="testimonials-grid">
-          {tt.items.map((item, i) => (
-            <figure key={i} className="testimonial-card">
-              <div className="testimonial-top">
-                <div className="testimonial-stars" aria-hidden="true">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <StarIcon key={j} className="star" />
-                  ))}
-                </div>
-                <GoogleGIcon className="testimonial-google" />
+              <div className="timeline-content">
+                <span className="timeline-day">{it.day}</span>
+                <p>{it.text}</p>
               </div>
-              <blockquote>{item.quote}</blockquote>
-              <figcaption>
-                <div className="testimonial-avatar">{item.author[0]}</div>
-                <div>
-                  <strong>{item.author}</strong>
-                  <span>{item.role}</span>
-                </div>
-              </figcaption>
-            </figure>
+            </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function Cards() {
+  const { t } = useLanguage();
+  const c = t.cards;
+  return (
+    <section className="section cards-cmp">
+      <div className="container">
+        <div className="section-head">
+          <h2>{c.h2}</h2>
+          <p className="section-sub">{c.subtitle}</p>
+        </div>
+        <div className="cmp-wrap">
+          <table className="cmp-table">
+            <thead>
+              <tr>
+                <th />
+                <th className="cmp-col-card">{c.colCard}</th>
+                <th className="cmp-col-revju">{c.colRevju}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {c.rows.map((r, i) => (
+                <tr key={i}>
+                  <td className="cmp-label">{r.label}</td>
+                  <td className="cmp-card">{r.card}</td>
+                  <td className="cmp-revju">
+                    <CheckIcon className="cmp-check" />
+                    {r.revju}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="cmp-closing">{c.closing}</p>
+      </div>
+    </section>
+  );
+}
+
+export function ForWho() {
+  const { t } = useLanguage();
+  const f = t.forWho;
+  return (
+    <section className="section forwho">
+      <div className="container">
+        <div className="section-head">
+          <h2>{f.h2}</h2>
+        </div>
+        <div className="forwho-tags">
+          {f.items.map((it) => (
+            <span key={it} className="forwho-tag">
+              {it}
+            </span>
+          ))}
+        </div>
+        <p className="forwho-closing">{f.closing}</p>
       </div>
     </section>
   );
@@ -196,16 +229,15 @@ export function Pricing() {
   const { t } = useLanguage();
   const p = t.pricing;
   return (
-    <section className="section pricing" id="pricing">
+    <section className="section pricing" id="cenik">
       <div className="container">
         <div className="section-head">
-          <Kicker>{p.kicker}</Kicker>
-          <h2>{p.title}</h2>
+          <h2>{p.h2}</h2>
           <p className="section-sub">{p.subtitle}</p>
         </div>
-        <div className="pricing-grid">
+        <div className="pricing-grid pricing-grid-2">
           {p.plans.map((plan, i) => {
-            const featured = i === 1;
+            const featured = !!plan.popular;
             return (
               <div
                 key={i}
@@ -213,21 +245,18 @@ export function Pricing() {
               >
                 {featured && <span className="price-tag">{p.popular}</span>}
                 <h3 className="price-name">{plan.name}</h3>
-                <p className="price-desc">{plan.description}</p>
                 <div className="price-amount">
                   <strong>{plan.price}</strong>
                   <span>{p.perMonth}</span>
                 </div>
-                <a
-                  href="#"
-                  className={
-                    "btn btn-block " +
-                    (featured ? "btn-primary" : "btn-outline")
-                  }
-                >
-                  {p.cta}
+                <p className="price-desc">{plan.tagline}</p>
+                <a href="#rezervacija" className={"btn btn-block " + (featured ? "btn-primary" : "btn-outline")}>
+                  {plan.cta}
                 </a>
                 <ul className="price-features">
+                  {featured && (
+                    <li className="price-included">{p.plansIncluded}</li>
+                  )}
                   {plan.features.map((feat, j) => (
                     <li key={j}>
                       <CheckIcon className="price-check" />
@@ -239,7 +268,7 @@ export function Pricing() {
             );
           })}
         </div>
-        <p className="pricing-guarantee">{p.guarantee}</p>
+        <p className="pricing-below">{p.below}</p>
       </div>
     </section>
   );
@@ -253,9 +282,7 @@ export function FAQ() {
     <section className="section faq" id="faq">
       <div className="container container-narrow">
         <div className="section-head">
-          <Kicker>{f.kicker}</Kicker>
-          <h2>{f.title}</h2>
-          <p className="section-sub">{f.subtitle}</p>
+          <h2>{f.h2}</h2>
         </div>
         <div className="faq-list">
           {f.items.map((item, i) => (
@@ -290,19 +317,63 @@ export function FinalCta() {
       <div className="container">
         <div className="final-cta-inner">
           <div className="final-cta-glow" aria-hidden="true" />
-          <h2>{c.title}</h2>
+          <h2>{c.h2}</h2>
           <p>{c.subtitle}</p>
           <div className="final-cta-actions">
-            <a href="#pricing" className="btn btn-white btn-lg">
-              {c.ctaPrimary}
+            <a href="#rezervacija" className="btn btn-white btn-lg">
+              {c.cta}
               <ArrowIcon className="btn-arrow" />
             </a>
-            <a href="#how" className="btn btn-ghost-light btn-lg">
-              {c.ctaSecondary}
-            </a>
           </div>
-          <p className="final-cta-note">{c.note}</p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function Booking() {
+  const { t } = useLanguage();
+  const b = t.booking;
+  const [sent, setSent] = useState(false);
+  return (
+    <section className="section booking" id="rezervacija">
+      <div className="container container-narrow">
+        <div className="section-head">
+          <h2>{b.title}</h2>
+          <p className="section-sub">{b.subtitle}</p>
+        </div>
+        <form
+          className="booking-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
+        >
+          <div className="booking-fields">
+            <input required placeholder={b.name} aria-label={b.name} />
+            <input required placeholder={b.business} aria-label={b.business} />
+            <input
+              required
+              type="tel"
+              placeholder={b.phone}
+              aria-label={b.phone}
+            />
+            <input
+              type="url"
+              placeholder={b.profile}
+              aria-label={b.profile}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary btn-lg btn-block">
+            {b.submit}
+          </button>
+          <p className="booking-note">{b.note}</p>
+          {sent && (
+            <p className="booking-sent" role="status">
+              ✓
+            </p>
+          )}
+        </form>
       </div>
     </section>
   );

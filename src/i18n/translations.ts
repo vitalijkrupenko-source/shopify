@@ -1,636 +1,768 @@
 export type Lang = "sl" | "en";
 
 export interface Translation {
-  meta: {
-    title: string;
-    description: string;
-  };
+  meta: { title: string; description: string };
   nav: {
     howItWorks: string;
-    features: string;
     results: string;
     pricing: string;
+    shop: string;
     faq: string;
     cta: string;
-    login: string;
   };
   hero: {
-    badge: string;
-    title1: string;
-    titleHighlight: string;
-    title2: string;
+    h1: string;
     subtitle: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    trust: string;
-    stat1Value: string;
-    stat1Label: string;
-    stat2Value: string;
-    stat2Label: string;
-    stat3Value: string;
-    stat3Label: string;
-    cardBusiness: string;
-    cardReviewsLabel: string;
-    cardRankLabel: string;
-    cardRankValue: string;
-    cardNotification: string;
+    ctaNote: string;
+    visualBiz: string;
+    visualSms: string;
+    visualBefore: string;
+    visualAfter: string;
+    visualBeforeLabel: string;
+    visualAfterLabel: string;
   };
-  logos: {
-    title: string;
-  };
+  trust: { items: string[] };
   problem: {
-    kicker: string;
-    title: string;
+    h2: string;
     subtitle: string;
-    items: { stat: string; text: string }[];
+    cards: { title: string; text: string }[];
+  };
+  change: {
+    h2: string;
+    points: { title: string; text: string }[];
+  };
+  caseStudy: {
+    eyebrow: string;
+    h2: string;
+    context: string;
+    result: string;
+    beforeLabel: string;
+    afterLabel: string;
+    pending: string;
   };
   how: {
-    kicker: string;
-    title: string;
-    subtitle: string;
-    steps: { number: string; title: string; text: string }[];
+    h2: string;
+    steps: { num: string; title: string; text: string }[];
   };
-  features: {
-    kicker: string;
-    title: string;
-    subtitle: string;
-    items: { icon: string; title: string; text: string }[];
+  firstWeek: {
+    h2: string;
+    items: { day: string; text: string }[];
   };
-  results: {
-    kicker: string;
-    title: string;
+  cards: {
+    h2: string;
     subtitle: string;
-    stats: { value: string; label: string }[];
-    quote: string;
-    quoteAuthor: string;
-    quoteRole: string;
+    colCard: string;
+    colRevju: string;
+    rows: { label: string; card: string; revju: string }[];
+    closing: string;
   };
-  testimonials: {
-    kicker: string;
-    title: string;
-    subtitle: string;
-    items: { quote: string; author: string; role: string }[];
+  forWho: {
+    h2: string;
+    items: string[];
+    closing: string;
   };
   pricing: {
-    kicker: string;
-    title: string;
+    h2: string;
     subtitle: string;
-    monthly: string;
     perMonth: string;
     popular: string;
-    cta: string;
+    plansIncluded: string;
     plans: {
       name: string;
       price: string;
-      description: string;
+      tagline: string;
+      popular?: boolean;
       features: string[];
+      cta: string;
     }[];
-    guarantee: string;
+    below: string;
+  };
+  shop: {
+    h2: string;
+    subtitle: string;
+    priceTbd: string;
+    buy: string;
+    products: { name: string; desc: string }[];
+    delivery: string;
+    cross: string;
+    crossLink: string;
   };
   faq: {
-    kicker: string;
-    title: string;
-    subtitle: string;
+    h2: string;
     items: { q: string; a: string }[];
   };
   finalCta: {
+    h2: string;
+    subtitle: string;
+    cta: string;
+  };
+  booking: {
     title: string;
     subtitle: string;
-    ctaPrimary: string;
-    ctaSecondary: string;
+    name: string;
+    business: string;
+    phone: string;
+    profile: string;
+    submit: string;
     note: string;
   };
   footer: {
-    tagline: string;
-    productTitle: string;
-    productLinks: string[];
-    companyTitle: string;
-    companyLinks: string[];
+    desc: string;
+    linksTitle: string;
+    links: { label: string; href: string }[];
     legalTitle: string;
-    legalLinks: string[];
+    legal: { label: string; href: string }[];
+    companyTitle: string;
+    companyPending: string;
     rights: string;
+    madeIn: string;
   };
 }
 
 export const translations: Record<Lang, Translation> = {
   sl: {
     meta: {
-      title: "Revju — Več Google ocen, višje uvrstitve, več strank",
+      title: "Revju — Več strank, brez dodatnega dela | Google ocene za lokalna podjetja",
       description:
-        "Pomagamo lokalnim podjetjem pridobiti več Google ocen in se uvrstiti višje v lokalnem iskanju. Več ocen pomeni več klicev, več poslov in več prihodka.",
+        "Revju po vsakem terminu samodejno pošlje SMS vaši stranki in jo prosi za Google oceno. Vi ne naredite nič. Več ocen, višje na Googlu, več strank. Brez vzpostavitvenega stroška.",
     },
     nav: {
       howItWorks: "Kako deluje",
-      features: "Zmožnosti",
       results: "Rezultati",
       pricing: "Cenik",
+      shop: "Trgovina",
       faq: "Pogosta vprašanja",
-      cta: "Začni brezplačno",
-      login: "Prijava",
+      cta: "Rezerviraj klic",
     },
     hero: {
-      badge: "Ocenjeno 5 zvezdic s strani več kot 500 lokalnih podjetij",
-      title1: "Pridobite več",
-      titleHighlight: "Google ocen",
-      title2: "in prehitite konkurenco",
+      h1: "Več strank. Brez dodatnega dela.",
       subtitle:
-        "Revju samodejno pošilja vašim strankam vabila za oceno v pravem trenutku. Več ocen pomeni višjo uvrstitev na Googlu — kar pomeni več klicev, več naročil in več prihodka.",
-      ctaPrimary: "Začni brezplačno",
-      ctaSecondary: "Rezerviraj demo",
-      trust: "Brez pogodbe · Postavljeno v 5 minutah · Prekliči kadarkoli",
-      stat1Value: "3,4×",
-      stat1Label: "več ocen v 90 dneh",
-      stat2Value: "+38 %",
-      stat2Label: "več klicev iz Googla",
-      stat3Value: "4,9★",
-      stat3Label: "povprečna ocena strank",
-      cardBusiness: "Mizarstvo Novak",
-      cardReviewsLabel: "Nove ocene ta mesec",
-      cardRankLabel: "Uvrstitev v lokalnem iskanju",
-      cardRankValue: "#1",
-      cardNotification: "Nova 5★ ocena od Ane K.",
+        "Revju po vsakem terminu samodejno pošlje SMS vaši stranki in jo prosi za Google oceno. Vi ne naredite ničesar. Google vas začne kazati višje — telefon začne zvoniti.",
+      ctaPrimary: "Rezerviraj brezplačen klic",
+      ctaSecondary: "Poglej rezultate",
+      ctaNote: "Brez vzpostavitvenega stroška. Brez vezave.",
+      visualBiz: "Kozmetični salon Maja",
+      visualSms: "Hvala za obisk! Nam pustite oceno? ⭐",
+      visualBefore: "9",
+      visualAfter: "74",
+      visualBeforeLabel: "prej",
+      visualAfterLabel: "čez 3 mesece",
     },
-    logos: {
-      title: "Zaupajo nam lokalna podjetja po vsej Sloveniji",
+    trust: {
+      items: [
+        "Prvi rezultati v 48 urah",
+        "Brez vezave — prekinete kadarkoli",
+        "Vse skladno z GDPR",
+      ],
     },
     problem: {
-      kicker: "Zakaj je pomembno",
-      title: "88 % ljudi zaupa spletnim ocenam enako kot osebnemu priporočilu",
-      subtitle:
-        "Vaše naslednje stranke prav zdaj iščejo na Googlu. Če imate manj ocen in nižjo oceno od konkurence, izberejo njih — ne vas.",
-      items: [
+      h2: "Vaša konkurenca ni boljša od vas.",
+      subtitle: "Ima samo več ocen. In stranke tega ne znajo ločiti.",
+      cards: [
         {
-          stat: "76 %",
-          text: "vseh lokalnih iskanj se konča z obiskom podjetja v 24 urah.",
+          title: "Stranke vas ne najdejo",
+          text: "Nekdo v vašem mestu prav zdaj išče točno to, kar ponujate. Google mu pokaže tri podjetja. Vi niste med njimi — ne zato, ker ste slabši, ampak ker imate 9 ocen namesto 70.",
         },
         {
-          stat: "3,3★",
-          text: "je najnižja ocena, ki jo bo povprečna stranka sploh upoštevala.",
+          title: "Nimate časa prositi",
+          text: "Vsakič, ko stranka odide zadovoljna, izgubite oceno, ki bi jo lahko imeli. Vi delate. Nimate časa loviti ljudi po telefonu.",
         },
         {
-          stat: "#1–3",
-          text: "prva tri mesta na Googlu poberejo večino vseh klikov in klicev.",
+          title: "Zaposleni pozabijo",
+          text: "Rekli ste jim, naj vprašajo. Prvi teden so. Potem se je nehalo. Vsak sistem, ki je odvisen od tega, da se nekdo spomni, prej ali slej odpove.",
         },
       ],
+    },
+    change: {
+      h2: "Kaj se zgodi, ko imate 70 ocen namesto 9",
+      points: [
+        {
+          title: "Vas najdejo prve.",
+          text: "Google postavi podjetja z več ocenami višje. Višje = več klicev.",
+        },
+        {
+          title: "Ne rabite se več dokazovati.",
+          text: "Nova stranka prebere 40 zadovoljnih ljudi in vas pokliče. Brez pregovarjanja.",
+        },
+        {
+          title: "Zaračunate lahko več.",
+          text: "Podjetje s 4,9 ★ in 70 ocenami ni v isti ligi kot tisto z 9. Cena sledi.",
+        },
+        {
+          title: "Deluje naprej.",
+          text: "Vsak nov termin = nova ocena. Samodejno, vsak dan.",
+        },
+      ],
+    },
+    caseStudy: {
+      eyebrow: "Kozmetični salon · Slovenija",
+      h2: "3 → 20 ocen v enem tednu",
+      context:
+        "Viktorija je imela tri ocene. Salon je delal odlično — stranke so se vračale — ampak na Googlu je bila nevidna. Priklopili smo Revju na njen rezervacijski sistem in poslali sporočilo vsem strankam iz zadnjih mesecev. V sedmih dneh: 20 ocen.",
+      result: "V 7 dneh",
+      beforeLabel: "prej",
+      afterLabel: "čez teden dni",
+      pending: "Screenshot in izjava stranke — v pripravi",
     },
     how: {
-      kicker: "Kako deluje",
-      title: "Več ocen v treh preprostih korakih",
-      subtitle:
-        "Nastavite enkrat in Revju poskrbi za ostalo. Brez zapletov, brez ročnega dela.",
+      h2: "Trije koraki. Potem nikoli več ne razmišljate o tem.",
       steps: [
         {
-          number: "01",
-          title: "Povežite svoj profil",
-          text: "Povežite svoj Google Poslovni profil v nekaj klikih. Uvozimo vaše obstoječe ocene in nastavimo vse namesto vas.",
+          num: "01",
+          title: "Povemo si 15 minut",
+          text: "Pokličeva se. Pogledava vaš Google profil in vaš rezervacijski sistem. Povem vam, koliko ocen lahko realno pričakujete v prvem mesecu.",
         },
         {
-          number: "02",
-          title: "Pošljemo vabila",
-          text: "Po vsaki opravljeni storitvi samodejno pošljemo vaši stranki prijazno SMS ali e-poštno vabilo za oceno — v pravem trenutku.",
+          num: "02",
+          title: "Vse nastavimo mi",
+          text: "Priklopimo se na vaš sistem (Fresha, Booksy, Excel — karkoli imate). Napišemo sporočilo v vašem tonu. Vi ne naredite nič.",
         },
         {
-          number: "03",
-          title: "Ocene rastejo, uvrstitev raste",
-          text: "Zadovoljne stranke z enim klikom pustijo 5★ oceno. Google to opazi in vas dvigne višje v rezultatih iskanja.",
+          num: "03",
+          title: "Sistem teče",
+          text: "Vsaka stranka po terminu dobi sporočilo. Ocene začnejo prihajati. Vi vidite številko, ki raste.",
         },
       ],
     },
-    features: {
-      kicker: "Zmožnosti",
-      title: "Vse, kar potrebujete za več ocen",
-      subtitle:
-        "Zmogljiva orodja, ki so tako preprosta, da jih obvladate v nekaj minutah.",
+    firstWeek: {
+      h2: "Kaj se zgodi v prvem tednu",
       items: [
         {
-          icon: "send",
-          title: "Samodejna vabila",
-          text: "Pošiljajte vabila za oceno prek SMS-a in e-pošte samodejno ali z enim klikom. Nastavite čas in besedilo po svojih željah.",
+          day: "Danes",
+          text: "Rezervirate klic. V 15 minutah veva, ali je za vas smiselno.",
         },
         {
-          icon: "shield",
-          title: "Prestreganje slabih izkušenj",
-          text: "Nezadovoljne stranke usmerimo v zasebno povratno informacijo, preden objavijo javno oceno. Zaščitite svoj ugled.",
+          day: "2. dan",
+          text: "Sistem je priklopljen. Prva sporočila gredo v vašo obstoječo bazo strank.",
         },
         {
-          icon: "qr",
-          title: "QR kode in povezave",
-          text: "Natisnite QR kodo za pult ali dodajte gumb na spletno stran. Stranke oddajo oceno v nekaj sekundah.",
+          day: "3. dan",
+          text: "Prve ocene se pojavijo na vašem Google profilu.",
         },
         {
-          icon: "chart",
-          title: "Sledenje uvrstitvam",
-          text: "Spremljajte, kje se uvrščate za ključne besede v vaši okolici, in kako vas prehitevate konkurenco iz tedna v teden.",
-        },
-        {
-          icon: "reply",
-          title: "AI odgovori na ocene",
-          text: "Odgovorite na vsako oceno v svojem slogu z enim klikom. Google nagrajuje podjetja, ki se odzivajo.",
-        },
-        {
-          icon: "star",
-          title: "Prikaz ocen na spletu",
-          text: "Predstavite svoje najboljše ocene na spletni strani z elegantnimi, samodejno posodobljenimi pripomočki.",
+          day: "7. dan",
+          text: "Številka je vidno višja. Google to opazi. Vi niste naredili ničesar.",
         },
       ],
     },
-    results: {
-      kicker: "Rezultati",
-      title: "Številke, ki spremenijo posel",
-      subtitle:
-        "Povprečni rezultati naših strank v prvih 90 dneh uporabe Revju.",
-      stats: [
-        { value: "3,4×", label: "več novih ocen na mesec" },
-        { value: "+38 %", label: "več klicev in poizvedb" },
-        { value: "+1,2★", label: "dvig povprečne ocene" },
-        { value: "#1", label: "povprečna uvrstitev v okolici" },
+    cards: {
+      h2: "Kartice ste že poskusili. Ali pa jih boste.",
+      subtitle: "Tu je, zakaj se vedno konča enako.",
+      colCard: "NFC kartica sama",
+      colRevju: "Revju",
+      rows: [
+        {
+          label: "Kdo prosi za oceno",
+          card: "Zaposleni — če se spomni",
+          revju: "Sistem — vsakič",
+        },
+        {
+          label: "Kaj se zgodi v napornem dnevu",
+          card: "Nihče ne ponudi kartice",
+          revju: "Sporočilo gre vseeno",
+        },
+        {
+          label: "Stare stranke",
+          card: "Ne dosežete jih",
+          revju: "Vse dosežete v prvem tednu",
+        },
+        {
+          label: "Ko se zaposleni zamenja",
+          card: "Začnete znova",
+          revju: "Nič se ne spremeni",
+        },
+        {
+          label: "Koliko dela za vas",
+          card: "Vsak dan malo",
+          revju: "Enkrat, na začetku",
+        },
       ],
-      quote:
-        "Prej smo dobili morda eno oceno na mesec. Z Revju jih dobimo 15 do 20. Zdaj smo prvi na Googlu za »mizar Ljubljana« in telefon ne neha zvoniti.",
-      quoteAuthor: "Marko Novak",
-      quoteRole: "Lastnik, Mizarstvo Novak",
+      closing:
+        "Kartica je dober pripomoček. Ni sistem. Zato jo v paketu Rast dobite zraven — ampak delo opravi avtomatizacija.",
     },
-    testimonials: {
-      kicker: "Mnenja strank",
-      title: "Lokalna podjetja, ki rastejo z nami",
-      subtitle: "Ne verjemite nam na besedo — poslušajte njih.",
+    forWho: {
+      h2: "Za katera podjetja to deluje",
       items: [
-        {
-          quote:
-            "V treh mesecih smo z 22 prišli na 140 ocen. Rezervacije so se podvojile. Najboljša naložba za naš salon doslej.",
-          author: "Nina Horvat",
-          role: "Frizerski salon Bella",
-        },
-        {
-          quote:
-            "Končno se uvrščamo pred veliko verigo v mestu. Stranke redno omenjajo, da so nas našle na Googlu zaradi ocen.",
-          author: "Luka Kovač",
-          role: "Avtoservis Kovač",
-        },
-        {
-          quote:
-            "Nastavitev je trajala pet minut. Zdaj vse teče samodejno, jaz pa se lahko posvetim strankam. Priporočam vsakemu obrtniku.",
-          author: "Petra Zupan",
-          role: "Zobozdravstvena ordinacija Nasmeh",
-        },
+        "Kozmetični saloni",
+        "Frizerski saloni",
+        "Zobozdravstvo",
+        "Avtoservisi",
+        "Fizioterapija",
+        "Gostinstvo",
+        "Vulkanizerji",
+        "Masaže",
+        "Nohti",
+        "Tetoviranje",
+        "Veterina",
+        "Servisi",
       ],
+      closing:
+        "Če imate stranke, ki pridejo, odidejo zadovoljne in nikoli ne napišejo ocene — deluje za vas.",
     },
     pricing: {
-      kicker: "Cenik",
-      title: "Preprost cenik, ki se povrne",
-      subtitle:
-        "Ena nova stranka na mesec pokrije celoten strošek. Vse ostalo je čisti dobiček.",
-      monthly: "Mesečno",
-      perMonth: "/mesec",
-      popular: "Najbolj priljubljeno",
-      cta: "Začni brezplačno",
+      h2: "Dva paketa. Brez vzpostavitvenega stroška.",
+      subtitle: "Konkurenca zaračuna 45–118 € samo za začetek. Mi ne.",
+      perMonth: "/ mesec",
+      popular: "Najbolj priljubljen",
+      plansIncluded: "Vse iz paketa Start, plus:",
       plans: [
         {
-          name: "Zagon",
-          price: "29 €",
-          description: "Za samostojne podjetnike in majhne obrti.",
+          name: "Revju Start",
+          price: "49 €",
+          tagline:
+            "Za manjše salone in obrti, ki hočejo, da ocene končno začnejo prihajati.",
           features: [
-            "Do 50 vabil na mesec",
-            "SMS in e-poštna vabila",
-            "Google Poslovni profil",
-            "QR koda in povezava za ocene",
-            "Osnovna analitika",
+            "Avtomatski SMS po vsakem terminu",
+            "Do 150 sporočil na mesec",
+            "Personalizirano sporočilo z imenom stranke",
+            "Mesečno poročilo — koliko ocen, koliko novih",
+            "Brez vezave, prekinete kadarkoli",
+            "Vzpostavitev: 0 €",
           ],
+          cta: "Začni s Start",
         },
         {
-          name: "Rast",
-          price: "59 €",
-          description: "Za rastoča lokalna podjetja z eno lokacijo.",
+          name: "Revju Rast",
+          price: "99 €",
+          tagline:
+            "Za podjetja, ki hočejo val ocen takoj in nočejo o tem več razmišljati.",
+          popular: true,
           features: [
-            "Neomejena vabila",
-            "Prestreganje slabih izkušenj",
-            "Sledenje uvrstitvam",
-            "AI odgovori na ocene",
-            "Prikaz ocen na spletni strani",
-            "Prednostna podpora",
+            "Do 500 sporočil na mesec",
+            "Reaktivacija baze — pošljemo vsem vašim starim strankam. Val ocen v prvem tednu.",
+            "Odgovarjamo na ocene namesto vas",
+            "Najboljše ocene objavimo na vaš Instagram",
+            "NFC stojalo + 10 kartic vključeno",
+            "Vzpostavitev: 0 €",
           ],
-        },
-        {
-          name: "Veriga",
-          price: "129 €",
-          description: "Za več lokacij in ekipe.",
-          features: [
-            "Vse iz paketa Rast",
-            "Do 5 lokacij",
-            "Skupna nadzorna plošča",
-            "Uporabniški računi za ekipo",
-            "Namenski svetovalec",
-            "Poročila po meri",
-          ],
+          cta: "Začni z Rast",
         },
       ],
-      guarantee: "30-dnevna garancija vračila denarja · Brez pogodbe",
+      below:
+        "Niste prepričani? Rezervirajte 15-minutni klic. Povem vam, koliko ocen lahko realno pričakujete — in če se vam ne splača, vam to povem.",
+    },
+    shop: {
+      h2: "Fizični pripomočki",
+      subtitle:
+        "Za podjetja, ki hočejo možnost ocene ponuditi tudi na pultu.",
+      priceTbd: "Cena kmalu",
+      buy: "Kupi",
+      products: [
+        {
+          name: "NFC stojalo",
+          desc: "Stoji na pultu. Stranka prisloni telefon. Odpre se vaša Google ocena.",
+        },
+        {
+          name: "NFC kartice (10 kom)",
+          desc: "Potiskane z vašim logotipom. NFC + QR koda.",
+        },
+      ],
+      delivery: "Dostava po Sloveniji",
+      cross: "V paketu Rast dobite stojalo in kartice brezplačno.",
+      crossLink: "Poglej pakete",
     },
     faq: {
-      kicker: "Pogosta vprašanja",
-      title: "Odgovori na vaša vprašanja",
-      subtitle: "Vse, kar morate vedeti, preden začnete.",
+      h2: "Pogosta vprašanja",
       items: [
         {
-          q: "Ali je pošiljanje vabil za oceno skladno s pravili Googla?",
-          a: "Da. Google izrecno spodbuja podjetja, naj prosijo stranke za ocene. Revju pošilja prijazna vabila vsem strankam enako in nikoli ne ponuja plačila ali nagrad za ocene, kar je popolnoma v skladu s smernicami.",
+          q: "Ali je to skladno z Googlovimi pravili?",
+          a: "Da. Ne ponujamo nagrad za ocene. Ne usmerjamo strank, kakšno oceno naj pustijo. Ne filtriramo nezadovoljnih. Samo olajšamo postopek zadovoljnim strankam, ki bi oceno pustile — če bi se spomnile. To je natanko to, kar Google priporoča.",
         },
         {
-          q: "Koliko časa traja, da vidim rezultate?",
-          a: "Večina strank prejme prve nove ocene že v prvem tednu. Opazen dvig uvrstitve v lokalnem iskanju običajno nastopi v 30 do 90 dneh, odvisno od vaše panoge in konkurence.",
+          q: "Ali je SMS nadlegovanje strank?",
+          a: "Eno sporočilo po opravljeni storitvi ni nadlegovanje. To je isto vprašanje, ki bi ga zastavila vaša zaposlena — samo da se zgodi vsakič, ne enkrat na teden, ko se kdo spomni. Sporočila pošiljamo enkrat po terminu, z največ enim opomnikom. Nikoli ne pošiljamo strankam, ki so oceno že pustile.",
         },
         {
-          q: "Kaj pa negativne ocene?",
-          a: "Naš sistem najprej vpraša stranko o njeni izkušnji. Zadovoljne usmeri na Google, nezadovoljne pa v zasebni obrazec, kjer vam sporočijo povratno informacijo — tako imate priložnost, da težavo rešite, preden postane javna.",
+          q: "Kaj pa če kdo pusti slabo oceno?",
+          a: "Statistično je nezadovoljna stranka veliko bolj verjetno napisala oceno kot zadovoljna — zato ima večina podjetij nesorazmerno slab profil. Ko začnete sistematično prositi vse stranke, se povprečje dvigne, ker je večina zadovoljnih. Slabe ocene se ne izognemo, ampak jo utopimo v resnici.",
         },
         {
-          q: "Ali potrebujem tehnično znanje?",
-          a: "Ne. Postavitev traja približno pet minut in vam pomagamo pri vsakem koraku. Če znate uporabljati telefon, znate uporabljati Revju.",
+          q: "Ali moram nameščati aplikacijo?",
+          a: "Ne. Ne vi, ne vaše stranke. Mi vse nastavimo, vi ne naredite ničesar.",
         },
         {
-          q: "Ali lahko kadarkoli prekličem?",
-          a: "Seveda. Ni pogodb in ni odpovednih rokov. Naročnino lahko prekličete z enim klikom, poleg tega pa nudimo 30-dnevno garancijo vračila denarja.",
+          q: "Kaj če nimam rezervacijskega sistema?",
+          a: "Ni problema. Delamo z Excel datoteko, s seznamom v telefonu, ali pa vam pomagamo urediti osnovni sistem.",
+        },
+        {
+          q: "Koliko časa traja vzpostavitev?",
+          a: "En dan. Klic traja 15 minut, potem naredimo vse mi.",
+        },
+        {
+          q: "Kdaj vidim prve ocene?",
+          a: "Prve v 48 urah. Če ste na paketu Rast in reaktiviramo staro bazo — val v prvem tednu.",
+        },
+        {
+          q: "Ali sem vezan na pogodbo?",
+          a: "Ne. Prekinete kadarkoli, brez razloga in brez stroška.",
+        },
+        {
+          q: "Kaj se zgodi z mojimi podatki o strankah?",
+          a: "Ostanejo vaši. Uporabimo jih izključno za pošiljanje sporočila. Ne prodajamo jih, ne delimo, ne uporabljamo za nič drugega. Vse skladno z GDPR.",
+        },
+        {
+          q: "Koliko ocen lahko realno pričakujem?",
+          a: "Odvisno od števila strank. Salon s 100 strankami na mesec dobi tipično 15–30 novih ocen v prvem mesecu. Na klicu vam povem konkretno številko za vaš primer.",
         },
       ],
     },
     finalCta: {
-      title: "Vaše naslednje stranke vas iščejo prav zdaj",
+      h2: "Vaše stranke so zadovoljne. Google tega ne ve.",
       subtitle:
-        "Vsak dan brez novih ocen je dan, ko konkurenca prehiteva vas. Začnite danes in prehitite jih.",
-      ctaPrimary: "Začni brezplačno",
-      ctaSecondary: "Rezerviraj demo",
-      note: "14 dni brezplačno · Ni potrebna kreditna kartica",
+        "15-minutni klic. Povem vam, koliko ocen lahko pričakujete — in če se vam ne splača, vam to povem.",
+      cta: "Rezerviraj brezplačen klic",
+    },
+    booking: {
+      title: "Rezervirajte brezplačen klic",
+      subtitle: "Pustite podatke in pokličemo vas v enem delovnem dnevu.",
+      name: "Ime in priimek",
+      business: "Ime podjetja",
+      phone: "Telefonska številka",
+      profile: "Povezava do vašega Google profila (neobvezno)",
+      submit: "Pošlji povpraševanje",
+      note: "Z oddajo se strinjate, da vas kontaktiramo glede storitve Revju.",
     },
     footer: {
-      tagline:
-        "Revju pomaga lokalnim podjetjem pridobiti več Google ocen, se uvrstiti višje in pridobiti več strank.",
-      productTitle: "Produkt",
-      productLinks: ["Kako deluje", "Zmožnosti", "Cenik", "Rezerviraj demo"],
-      companyTitle: "Podjetje",
-      companyLinks: ["O nas", "Mnenja strank", "Blog", "Kariera"],
+      desc: "Revju po vsakem terminu samodejno pošlje SMS vaši stranki in jo prosi za Google oceno. Vi ne naredite ničesar.",
+      linksTitle: "Povezave",
+      links: [
+        { label: "Kako deluje", href: "#kako-deluje" },
+        { label: "Cenik", href: "#cenik" },
+        { label: "Trgovina", href: "#trgovina" },
+        { label: "Kontakt", href: "#rezervacija" },
+      ],
       legalTitle: "Pravno",
-      legalLinks: ["Zasebnost", "Pogoji", "Piškotki"],
+      legal: [
+        { label: "Politika zasebnosti", href: "#zasebnost" },
+        { label: "Splošni pogoji", href: "#pogoji" },
+      ],
+      companyTitle: "Podjetje",
+      companyPending: "Podatki podjetja — v pripravi",
       rights: "Vse pravice pridržane.",
+      madeIn: "Slovenija",
     },
   },
   en: {
     meta: {
-      title: "Revju — More Google reviews, higher rankings, more customers",
+      title: "Revju — More customers, no extra work | Google reviews for local business",
       description:
-        "We help local businesses get more Google reviews and rank higher in local search. More reviews means more calls, more jobs and more revenue.",
+        "After every appointment Revju automatically texts your customer and asks for a Google review. You do nothing. More reviews, higher on Google, more customers. No setup fee.",
     },
     nav: {
       howItWorks: "How it works",
-      features: "Features",
       results: "Results",
       pricing: "Pricing",
+      shop: "Shop",
       faq: "FAQ",
-      cta: "Start free",
-      login: "Log in",
+      cta: "Book a call",
     },
     hero: {
-      badge: "Rated 5 stars by 500+ local businesses",
-      title1: "Get more",
-      titleHighlight: "Google reviews",
-      title2: "and outrank your competition",
+      h1: "More customers. No extra work.",
       subtitle:
-        "Revju automatically sends your customers review invitations at the perfect moment. More reviews means a higher spot on Google — which means more calls, more bookings and more revenue.",
-      ctaPrimary: "Start free",
-      ctaSecondary: "Book a demo",
-      trust: "No contract · Set up in 5 minutes · Cancel anytime",
-      stat1Value: "3.4×",
-      stat1Label: "more reviews in 90 days",
-      stat2Value: "+38%",
-      stat2Label: "more calls from Google",
-      stat3Value: "4.9★",
-      stat3Label: "average customer rating",
-      cardBusiness: "Novak Woodworks",
-      cardReviewsLabel: "New reviews this month",
-      cardRankLabel: "Local search rank",
-      cardRankValue: "#1",
-      cardNotification: "New 5★ review from Anna K.",
+        "After every appointment Revju automatically sends your customer a text asking for a Google review. You do nothing. Google starts ranking you higher — the phone starts ringing.",
+      ctaPrimary: "Book a free call",
+      ctaSecondary: "See the results",
+      ctaNote: "No setup fee. No contract.",
+      visualBiz: "Maja Beauty Salon",
+      visualSms: "Thanks for visiting! Leave us a review? ⭐",
+      visualBefore: "9",
+      visualAfter: "74",
+      visualBeforeLabel: "before",
+      visualAfterLabel: "after 3 months",
     },
-    logos: {
-      title: "Trusted by local businesses across the country",
+    trust: {
+      items: [
+        "First results within 48 hours",
+        "No contract — cancel anytime",
+        "Fully GDPR compliant",
+      ],
     },
     problem: {
-      kicker: "Why it matters",
-      title: "88% of people trust online reviews as much as a personal recommendation",
-      subtitle:
-        "Your next customers are searching on Google right now. If you have fewer reviews and a lower rating than your competitors, they win the job — not you.",
-      items: [
+      h2: "Your competition isn't better than you.",
+      subtitle: "They just have more reviews. And customers can't tell the difference.",
+      cards: [
         {
-          stat: "76%",
-          text: "of all local searches result in a business visit within 24 hours.",
+          title: "Customers can't find you",
+          text: "Someone in your town is searching for exactly what you offer right now. Google shows them three businesses. You're not one of them — not because you're worse, but because you have 9 reviews instead of 70.",
         },
         {
-          stat: "3.3★",
-          text: "is the lowest rating the average customer will even consider.",
+          title: "You have no time to ask",
+          text: "Every time a happy customer leaves, you lose a review you could have had. You're working. You don't have time to chase people by phone.",
         },
         {
-          stat: "#1–3",
-          text: "the top three spots on Google capture the majority of all clicks and calls.",
+          title: "Staff forget",
+          text: "You told them to ask. They did the first week. Then it stopped. Any system that depends on someone remembering will eventually fail.",
         },
       ],
+    },
+    change: {
+      h2: "What happens when you have 70 reviews instead of 9",
+      points: [
+        {
+          title: "You get found first.",
+          text: "Google ranks businesses with more reviews higher. Higher = more calls.",
+        },
+        {
+          title: "You stop having to prove yourself.",
+          text: "A new customer reads 40 happy people and calls you. No convincing needed.",
+        },
+        {
+          title: "You can charge more.",
+          text: "A business with 4.9 ★ and 70 reviews isn't in the same league as one with 9. Price follows.",
+        },
+        {
+          title: "It keeps working.",
+          text: "Every new appointment = a new review. Automatically, every day.",
+        },
+      ],
+    },
+    caseStudy: {
+      eyebrow: "Beauty salon · Slovenia",
+      h2: "3 → 20 reviews in one week",
+      context:
+        "Viktorija had three reviews. The salon was doing great — customers kept coming back — but on Google she was invisible. We connected Revju to her booking system and messaged every customer from the last few months. Within seven days: 20 reviews.",
+      result: "In 7 days",
+      beforeLabel: "before",
+      afterLabel: "one week later",
+      pending: "Screenshot and customer quote — coming soon",
     },
     how: {
-      kicker: "How it works",
-      title: "More reviews in three simple steps",
-      subtitle:
-        "Set it up once and Revju handles the rest. No hassle, no manual work.",
+      h2: "Three steps. Then you never think about it again.",
       steps: [
         {
-          number: "01",
-          title: "Connect your profile",
-          text: "Connect your Google Business Profile in a few clicks. We import your existing reviews and set everything up for you.",
+          num: "01",
+          title: "We talk for 15 minutes",
+          text: "We hop on a call. We look at your Google profile and your booking system. I tell you how many reviews you can realistically expect in the first month.",
         },
         {
-          number: "02",
-          title: "We send the invitations",
-          text: "After every completed job we automatically send your customer a friendly SMS or email review invitation — at exactly the right moment.",
+          num: "02",
+          title: "We set it all up",
+          text: "We connect to your system (Fresha, Booksy, Excel — whatever you have). We write the message in your tone. You do nothing.",
         },
         {
-          number: "03",
-          title: "Reviews grow, rankings rise",
-          text: "Happy customers leave a 5★ review with one tap. Google notices and pushes you higher in the search results.",
+          num: "03",
+          title: "The system runs",
+          text: "Every customer gets a message after their appointment. Reviews start coming in. You watch the number grow.",
         },
       ],
     },
-    features: {
-      kicker: "Features",
-      title: "Everything you need for more reviews",
-      subtitle:
-        "Powerful tools that are simple enough to master in minutes.",
+    firstWeek: {
+      h2: "What happens in the first week",
       items: [
         {
-          icon: "send",
-          title: "Automated invitations",
-          text: "Send review requests by SMS and email automatically or with one click. Set the timing and wording exactly how you like.",
+          day: "Today",
+          text: "You book a call. In 15 minutes we know whether it makes sense for you.",
         },
         {
-          icon: "shield",
-          title: "Bad-experience filter",
-          text: "We route unhappy customers to private feedback before they post publicly. Protect your reputation.",
+          day: "Day 2",
+          text: "The system is connected. The first messages go out to your existing customer base.",
         },
         {
-          icon: "qr",
-          title: "QR codes and links",
-          text: "Print a QR code for your counter or add a button to your website. Customers leave a review in seconds.",
+          day: "Day 3",
+          text: "The first reviews appear on your Google profile.",
         },
         {
-          icon: "chart",
-          title: "Rank tracking",
-          text: "See where you rank for the keywords in your area, and how you're overtaking competitors week by week.",
-        },
-        {
-          icon: "reply",
-          title: "AI review replies",
-          text: "Reply to every review in your own voice with one click. Google rewards businesses that respond.",
-        },
-        {
-          icon: "star",
-          title: "Review widgets",
-          text: "Showcase your best reviews on your website with elegant, auto-updating widgets.",
+          day: "Day 7",
+          text: "The number is visibly higher. Google notices. You did nothing.",
         },
       ],
     },
-    results: {
-      kicker: "Results",
-      title: "Numbers that change your business",
-      subtitle:
-        "Average results our customers see in their first 90 days on Revju.",
-      stats: [
-        { value: "3.4×", label: "more new reviews per month" },
-        { value: "+38%", label: "more calls and enquiries" },
-        { value: "+1.2★", label: "lift in average rating" },
-        { value: "#1", label: "average local rank" },
+    cards: {
+      h2: "You've tried cards. Or you will.",
+      subtitle: "Here's why it always ends the same way.",
+      colCard: "NFC card alone",
+      colRevju: "Revju",
+      rows: [
+        {
+          label: "Who asks for the review",
+          card: "The employee — if they remember",
+          revju: "The system — every time",
+        },
+        {
+          label: "What happens on a busy day",
+          card: "No one offers the card",
+          revju: "The message goes out anyway",
+        },
+        {
+          label: "Old customers",
+          card: "You can't reach them",
+          revju: "You reach them all in week one",
+        },
+        {
+          label: "When an employee leaves",
+          card: "You start over",
+          revju: "Nothing changes",
+        },
+        {
+          label: "How much work for you",
+          card: "A little every day",
+          revju: "Once, at the start",
+        },
       ],
-      quote:
-        "We used to get maybe one review a month. With Revju we get 15 to 20. We're now number one on Google for 'carpenter near me' and the phone doesn't stop ringing.",
-      quoteAuthor: "Mark Novak",
-      quoteRole: "Owner, Novak Woodworks",
+      closing:
+        "A card is a nice tool. It's not a system. That's why the Growth plan includes one — but the automation does the work.",
     },
-    testimonials: {
-      kicker: "Testimonials",
-      title: "Local businesses growing with us",
-      subtitle: "Don't take our word for it — hear it from them.",
+    forWho: {
+      h2: "Which businesses this works for",
       items: [
-        {
-          quote:
-            "In three months we went from 22 to 140 reviews. Bookings doubled. Best investment our salon has ever made.",
-          author: "Nina Horvat",
-          role: "Bella Hair Salon",
-        },
-        {
-          quote:
-            "We finally rank ahead of the big chain in town. Customers constantly mention they found us on Google because of the reviews.",
-          author: "Luke Kovac",
-          role: "Kovac Auto Repair",
-        },
-        {
-          quote:
-            "Setup took five minutes. Now everything runs on autopilot and I can focus on my customers. I recommend it to every tradesperson.",
-          author: "Petra Zupan",
-          role: "Smile Dental Practice",
-        },
+        "Beauty salons",
+        "Hair salons",
+        "Dental practices",
+        "Auto repair",
+        "Physiotherapy",
+        "Hospitality",
+        "Tyre shops",
+        "Massage",
+        "Nails",
+        "Tattoo",
+        "Veterinary",
+        "Repair shops",
       ],
+      closing:
+        "If you have customers who come in, leave happy and never write a review — it works for you.",
     },
     pricing: {
-      kicker: "Pricing",
-      title: "Simple pricing that pays for itself",
-      subtitle:
-        "One new customer a month covers the entire cost. Everything after that is pure profit.",
-      monthly: "Monthly",
-      perMonth: "/month",
+      h2: "Two plans. No setup fee.",
+      subtitle: "The competition charges €45–118 just to get started. We don't.",
+      perMonth: "/ month",
       popular: "Most popular",
-      cta: "Start free",
+      plansIncluded: "Everything in Start, plus:",
       plans: [
         {
-          name: "Starter",
-          price: "€29",
-          description: "For solo owners and small trades.",
+          name: "Revju Start",
+          price: "€49",
+          tagline:
+            "For smaller salons and trades that want reviews to finally start coming in.",
           features: [
-            "Up to 50 invitations per month",
-            "SMS and email invitations",
-            "Google Business Profile",
-            "Review QR code and link",
-            "Basic analytics",
+            "Automatic SMS after every appointment",
+            "Up to 150 messages per month",
+            "Personalised message with the customer's name",
+            "Monthly report — how many reviews, how many new",
+            "No contract, cancel anytime",
+            "Setup: €0",
           ],
+          cta: "Start with Start",
         },
         {
-          name: "Growth",
-          price: "€59",
-          description: "For growing single-location businesses.",
+          name: "Revju Growth",
+          price: "€99",
+          tagline:
+            "For businesses that want a wave of reviews now and never want to think about it again.",
+          popular: true,
           features: [
-            "Unlimited invitations",
-            "Bad-experience filter",
-            "Rank tracking",
-            "AI review replies",
-            "Website review widgets",
-            "Priority support",
+            "Up to 500 messages per month",
+            "Database reactivation — we message all your past customers. A wave of reviews in the first week.",
+            "We reply to reviews for you",
+            "We post your best reviews to your Instagram",
+            "NFC stand + 10 cards included",
+            "Setup: €0",
           ],
-        },
-        {
-          name: "Multi",
-          price: "€129",
-          description: "For multiple locations and teams.",
-          features: [
-            "Everything in Growth",
-            "Up to 5 locations",
-            "Unified dashboard",
-            "Team member accounts",
-            "Dedicated advisor",
-            "Custom reporting",
-          ],
+          cta: "Start with Growth",
         },
       ],
-      guarantee: "30-day money-back guarantee · No contract",
+      below:
+        "Not sure? Book a 15-minute call. I'll tell you how many reviews you can realistically expect — and if it's not worth it for you, I'll tell you that too.",
+    },
+    shop: {
+      h2: "Physical add-ons",
+      subtitle: "For businesses that also want to offer the review option at the counter.",
+      priceTbd: "Price soon",
+      buy: "Buy",
+      products: [
+        {
+          name: "NFC stand",
+          desc: "Sits on your counter. The customer taps their phone. Your Google review opens.",
+        },
+        {
+          name: "NFC cards (10 pcs)",
+          desc: "Printed with your logo. NFC + QR code.",
+        },
+      ],
+      delivery: "Delivery across Slovenia",
+      cross: "The Growth plan includes the stand and cards for free.",
+      crossLink: "See the plans",
     },
     faq: {
-      kicker: "FAQ",
-      title: "Answers to your questions",
-      subtitle: "Everything you need to know before you start.",
+      h2: "Frequently asked questions",
       items: [
         {
-          q: "Is sending review invitations compliant with Google's rules?",
-          a: "Yes. Google explicitly encourages businesses to ask customers for reviews. Revju sends friendly invitations to all customers equally and never offers payment or rewards for reviews, which is fully within the guidelines.",
+          q: "Is this compliant with Google's rules?",
+          a: "Yes. We don't offer rewards for reviews. We don't steer customers on what rating to leave. We don't filter out unhappy ones. We simply make it easy for happy customers who would leave a review — if they remembered. This is exactly what Google recommends.",
         },
         {
-          q: "How long until I see results?",
-          a: "Most customers receive their first new reviews within the first week. A noticeable lift in local search ranking usually appears within 30 to 90 days, depending on your industry and competition.",
+          q: "Is texting customers harassment?",
+          a: "One message after a completed service isn't harassment. It's the same question your employee would ask — it just happens every time, not once a week when someone remembers. We send once after the appointment, with at most one reminder. We never message customers who have already left a review.",
         },
         {
-          q: "What about negative reviews?",
-          a: "Our system first asks the customer about their experience. It routes happy ones to Google, and unhappy ones to a private form where they share feedback with you — giving you the chance to fix the issue before it becomes public.",
+          q: "What if someone leaves a bad review?",
+          a: "Statistically an unhappy customer is far more likely to have written a review than a happy one — which is why most businesses have a disproportionately poor profile. Once you start systematically asking all customers, the average rises, because most are happy. You don't avoid bad reviews, you drown them in the truth.",
         },
         {
-          q: "Do I need technical skills?",
-          a: "No. Setup takes about five minutes and we help you every step of the way. If you can use a phone, you can use Revju.",
+          q: "Do I have to install an app?",
+          a: "No. Neither you nor your customers. We set everything up, you do nothing.",
         },
         {
-          q: "Can I cancel anytime?",
-          a: "Absolutely. There are no contracts and no notice periods. You can cancel your subscription with one click, and we back it with a 30-day money-back guarantee.",
+          q: "What if I don't have a booking system?",
+          a: "No problem. We work with an Excel file, a list on your phone, or we help you set up a basic system.",
+        },
+        {
+          q: "How long does setup take?",
+          a: "One day. The call takes 15 minutes, then we do everything.",
+        },
+        {
+          q: "When do I see the first reviews?",
+          a: "The first within 48 hours. If you're on the Growth plan and we reactivate your old database — a wave in the first week.",
+        },
+        {
+          q: "Am I tied to a contract?",
+          a: "No. Cancel anytime, no reason and no cost.",
+        },
+        {
+          q: "What happens to my customer data?",
+          a: "It stays yours. We use it solely to send the message. We don't sell it, share it, or use it for anything else. Everything GDPR compliant.",
+        },
+        {
+          q: "How many reviews can I realistically expect?",
+          a: "It depends on your number of customers. A salon with 100 customers a month typically gets 15–30 new reviews in the first month. On the call I'll give you a concrete number for your case.",
         },
       ],
     },
     finalCta: {
-      title: "Your next customers are searching for you right now",
+      h2: "Your customers are happy. Google doesn't know it.",
       subtitle:
-        "Every day without new reviews is a day your competition gets ahead. Start today and overtake them.",
-      ctaPrimary: "Start free",
-      ctaSecondary: "Book a demo",
-      note: "14 days free · No credit card required",
+        "A 15-minute call. I'll tell you how many reviews you can expect — and if it's not worth it, I'll tell you that too.",
+      cta: "Book a free call",
+    },
+    booking: {
+      title: "Book a free call",
+      subtitle: "Leave your details and we'll call you within one business day.",
+      name: "Full name",
+      business: "Business name",
+      phone: "Phone number",
+      profile: "Link to your Google profile (optional)",
+      submit: "Send enquiry",
+      note: "By submitting you agree to be contacted about the Revju service.",
     },
     footer: {
-      tagline:
-        "Revju helps local businesses get more Google reviews, rank higher and win more customers.",
-      productTitle: "Product",
-      productLinks: ["How it works", "Features", "Pricing", "Book a demo"],
-      companyTitle: "Company",
-      companyLinks: ["About", "Testimonials", "Blog", "Careers"],
+      desc: "After every appointment Revju automatically texts your customer and asks for a Google review. You do nothing.",
+      linksTitle: "Links",
+      links: [
+        { label: "How it works", href: "#kako-deluje" },
+        { label: "Pricing", href: "#cenik" },
+        { label: "Shop", href: "#trgovina" },
+        { label: "Contact", href: "#rezervacija" },
+      ],
       legalTitle: "Legal",
-      legalLinks: ["Privacy", "Terms", "Cookies"],
+      legal: [
+        { label: "Privacy policy", href: "#zasebnost" },
+        { label: "Terms", href: "#pogoji" },
+      ],
+      companyTitle: "Company",
+      companyPending: "Company details — coming soon",
       rights: "All rights reserved.",
+      madeIn: "Slovenia",
     },
   },
 };

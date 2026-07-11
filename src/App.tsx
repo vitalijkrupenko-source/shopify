@@ -2,16 +2,20 @@ import { LanguageProvider } from "./i18n/LanguageContext";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import {
-  LogoBar,
+  TrustBar,
   Problem,
+  Change,
+  CaseStudy,
   HowItWorks,
-  Features,
-  Results,
-  Testimonials,
+  FirstWeek,
+  Cards,
+  ForWho,
   Pricing,
   FAQ,
   FinalCta,
+  Booking,
 } from "./components/Sections";
+import { Shop } from "./components/Shop";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -20,15 +24,19 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <LogoBar />
+        <TrustBar />
         <Problem />
+        <Change />
+        <CaseStudy />
         <HowItWorks />
-        <Features />
-        <Results />
-        <Testimonials />
+        <FirstWeek />
+        <Cards />
+        <ForWho />
         <Pricing />
+        <Shop />
         <FAQ />
         <FinalCta />
+        <Booking />
       </main>
       <Footer />
     </LanguageProvider>

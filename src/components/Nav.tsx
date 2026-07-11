@@ -51,10 +51,10 @@ export function Nav() {
   }, []);
 
   const links = [
-    { href: "#how", label: t.nav.howItWorks },
-    { href: "#features", label: t.nav.features },
-    { href: "#results", label: t.nav.results },
-    { href: "#pricing", label: t.nav.pricing },
+    { href: "#kako-deluje", label: t.nav.howItWorks },
+    { href: "#rezultati", label: t.nav.results },
+    { href: "#cenik", label: t.nav.pricing },
+    { href: "#trgovina", label: t.nav.shop },
     { href: "#faq", label: t.nav.faq },
   ];
 
@@ -71,10 +71,7 @@ export function Nav() {
         </nav>
         <div className="nav-actions">
           <LangSwitch />
-          <a href="#" className="nav-login">
-            {t.nav.login}
-          </a>
-          <a href="#pricing" className="btn btn-primary btn-sm">
+          <a href="#rezervacija" className="btn btn-primary btn-sm">
             {t.nav.cta}
           </a>
           <button
@@ -97,7 +94,7 @@ export function Nav() {
             </a>
           ))}
           <a
-            href="#pricing"
+            href="#rezervacija"
             className="btn btn-primary"
             onClick={() => setOpen(false)}
           >

@@ -20,41 +20,18 @@ export function Hero() {
       <div className="hero-glow" aria-hidden="true" />
       <div className="container hero-inner">
         <div className="hero-copy">
-          <div className="hero-badge">
-            <Stars />
-            <span>{h.badge}</span>
-          </div>
-          <h1 className="hero-title">
-            {h.title1}{" "}
-            <span className="hero-highlight">{h.titleHighlight}</span>{" "}
-            {h.title2}
-          </h1>
+          <h1 className="hero-title">{h.h1}</h1>
           <p className="hero-sub">{h.subtitle}</p>
           <div className="hero-cta">
-            <a href="#pricing" className="btn btn-primary btn-lg">
+            <a href="#rezervacija" className="btn btn-primary btn-lg">
               {h.ctaPrimary}
               <ArrowIcon className="btn-arrow" />
             </a>
-            <a href="#how" className="btn btn-ghost btn-lg">
-              {h.ctaSecondary}
+            <a href="#rezultati" className="btn btn-ghost btn-lg">
+              {h.ctaSecondary} ↓
             </a>
           </div>
-          <p className="hero-trust">{h.trust}</p>
-
-          <div className="hero-stats">
-            <div className="hero-stat">
-              <strong>{h.stat1Value}</strong>
-              <span>{h.stat1Label}</span>
-            </div>
-            <div className="hero-stat">
-              <strong>{h.stat2Value}</strong>
-              <span>{h.stat2Label}</span>
-            </div>
-            <div className="hero-stat">
-              <strong>{h.stat3Value}</strong>
-              <span>{h.stat3Label}</span>
-            </div>
-          </div>
+          <p className="hero-trust">{h.ctaNote}</p>
         </div>
 
         <div className="hero-visual" aria-hidden="true">
@@ -62,61 +39,71 @@ export function Hero() {
             <div className="dash-head">
               <div className="dash-biz">
                 <div className="dash-avatar">
-                  {h.cardBusiness
+                  {h.visualBiz
                     .split(" ")
                     .map((w) => w[0])
                     .join("")
                     .slice(0, 2)}
                 </div>
                 <div>
-                  <div className="dash-biz-name">{h.cardBusiness}</div>
+                  <div className="dash-biz-name">{h.visualBiz}</div>
                   <div className="dash-biz-rating">
                     <Stars />
-                    <span>4.9</span>
+                    <span>4,9</span>
                   </div>
                 </div>
               </div>
               <GoogleGIcon className="dash-google" />
             </div>
 
-            <div className="dash-row">
-              <div className="dash-tile">
-                <span className="dash-tile-label">{h.cardReviewsLabel}</span>
-                <span className="dash-tile-value dash-up">+27</span>
-                <div className="dash-bars">
-                  {[40, 55, 48, 70, 62, 85, 100].map((v, i) => (
-                    <span key={i} style={{ height: `${v}%` }} />
-                  ))}
-                </div>
+            <div className="counter">
+              <div className="counter-side counter-before">
+                <span className="counter-num">{h.visualBefore}</span>
+                <span className="counter-label">{h.visualBeforeLabel}</span>
               </div>
-              <div className="dash-tile">
-                <span className="dash-tile-label">{h.cardRankLabel}</span>
-                <span className="dash-tile-value dash-rank">
-                  {h.cardRankValue}
-                </span>
-                <div className="dash-rank-track">
-                  <span className="dash-rank-fill" />
-                </div>
+              <ArrowIcon className="counter-arrow" />
+              <div className="counter-side counter-after">
+                <span className="counter-num">{h.visualAfter}</span>
+                <span className="counter-label">{h.visualAfterLabel}</span>
               </div>
             </div>
+            <div className="counter-caption">
+              <Stars />
+              <span>Google ocene</span>
+            </div>
+          </div>
+
+          <div className="sms-bubble">
+            <span className="sms-icon">
+              <SmsIcon />
+            </span>
+            <span className="sms-text">{h.visualSms}</span>
           </div>
 
           <div className="dash-toast">
             <span className="dash-toast-icon">
               <StarIcon className="star" />
             </span>
-            <span className="dash-toast-text">{h.cardNotification}</span>
-          </div>
-
-          <div className="dash-badge-float">
-            <GoogleGIcon className="dash-badge-google" />
-            <div>
-              <Stars />
-              <span className="dash-badge-count">1,248 {"★"}</span>
-            </div>
+            <span className="dash-toast-text">+1 ★★★★★</span>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function SmsIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+    </svg>
   );
 }

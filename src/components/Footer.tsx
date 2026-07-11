@@ -4,38 +4,45 @@ import { Logo } from "./Nav";
 export function Footer() {
   const { t } = useLanguage();
   const f = t.footer;
-  const cols = [
-    { title: f.productTitle, links: f.productLinks },
-    { title: f.companyTitle, links: f.companyLinks },
-    { title: f.legalTitle, links: f.legalLinks },
-  ];
   return (
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
           <Logo />
-          <p>{f.tagline}</p>
+          <p>{f.desc}</p>
         </div>
         <div className="footer-cols">
-          {cols.map((col) => (
-            <div key={col.title} className="footer-col">
-              <h4>{col.title}</h4>
-              <ul>
-                {col.links.map((l) => (
-                  <li key={l}>
-                    <a href="#">{l}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="footer-col">
+            <h4>{f.linksTitle}</h4>
+            <ul>
+              {f.links.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>{f.legalTitle}</h4>
+            <ul>
+              {f.legal.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>{f.companyTitle}</h4>
+            <p className="footer-pending">{f.companyPending}</p>
+          </div>
         </div>
       </div>
       <div className="container footer-bottom">
         <span>
           © {new Date().getFullYear()} Revju. {f.rights}
         </span>
-        <span className="footer-made">Ljubljana · Slovenija</span>
+        <span className="footer-made">{f.madeIn}</span>
       </div>
     </footer>
   );
